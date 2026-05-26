@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>❤️ Control Financiero de Jesi y Daniel ❤️</title>
+
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --card: #ffffff;
+      --text: #17202a;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --green: #16a34a;
+      --yellow: #ca8a04;
+      --red: #dc2626;
+      --gray: #9ca3af;
+      --border: #e5e7eb;
+      --shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .app {
+      width: 100%;
+      max-width: 480px;
+      min-height: 100vh;
+      margin: 0 auto;
+      background: var(--bg);
+      padding-bottom: 90px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: linear-gradient(135deg, #1d4ed8, #2563eb);
+      color: white;
+      padding: 18px 18px 20px;
+      border-bottom-left-radius: 24px;
+      border-bottom-right-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 21px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    header p {
+      margin: 6px 0 0;
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    .status-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.16);
+      color: white;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .section {
+      display: none;
+      padding: 16px;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .top-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .summary-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .balance-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card-title-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .concept-title {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .saldo {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .saldo.empty {
+      color: var(--gray);
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .pill.green {
+      color: #166534;
+      background: #dcfce7;
+    }
+
+    .pill.yellow {
+      color: #854d0e;
+      background: #fef3c7;
+    }
+
+    .pill.red {
+      color: #991b1b;
+      background: #fee2e2;
+    }
+
+    .pill.gray {
+      color: #374151;
+      background: #f3f4f6;
+    }
+
+    .progress {
+      width: 100%;
+      height: 9px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: #e5e7eb;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: var(--primary);
+      transition: width 0.25s ease;
+    }
+
+    .progress-bar.green {
+      background: var(--green);
+    }
+
+    .progress-bar.yellow {
+      background: var(--yellow);
+    }
+
+    .progress-bar.red {
+      background: var(--red);
+    }
+
+    form {
+      display: grid;
+      gap: 13px;
+    }
+
+    .form-card {
+      display: grid;
+      gap: 14px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #374151;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 13px;
+      font-size: 16px;
+      background: white;
+      color: var(--text);
+      outline: none;
+    }
+
+    textarea {
+      min-height: 78px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    button {
+      border: none;
+      border-radius: 14px;
+      min-height: 48px;
+      padding: 12px 14px;
+      font-size: 15px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform 0.08s ease, opacity 0.2s ease;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-secondary {
+      background: #e8eefc;
+      color: #1d4ed8;
+    }
+
+    .btn-danger {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .btn-light {
+      background: #f3f4f6;
+      color: #111827;
+    }
+
+    .btn-full {
+      width: 100%;
+    }
+
+    .saldo-admin-card {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .saldo-admin-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .small-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .history-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .history-item {
+      display: grid;
+      gap: 6px;
+    }
+
+    .history-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .history-title {
+      font-weight: 900;
+      font-size: 15px;
+    }
+
+    .history-amount {
+      font-weight: 900;
+      color: var(--red);
+    }
+
+    .history-note {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .empty-state {
+      text-align: center;
+      color: var(--muted);
+      padding: 24px 12px;
+    }
+
+    .nav {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      z-index: 20;
+      width: 100%;
+      max-width: 480px;
+      background: white;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 8px 8px 10px;
+      box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.10);
+    }
+
+    .nav button {
+      min-height: 56px;
+      border-radius: 16px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 12px;
+      display: grid;
+      place-items: center;
+      gap: 2px;
+      padding: 6px 4px;
+    }
+
+    .nav button.active {
+      color: var(--primary);
+      background: #eff6ff;
+    }
+
+    .nav-icon {
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 88px;
+      transform: translateX(-50%);
+      width: calc(100% - 32px);
+      max-width: 448px;
+      background: #111827;
+      color: white;
+      padding: 12px 14px;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      display: none;
+      z-index: 30;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .toast.show {
+      display: block;
+    }
+
+    .toast.error {
+      background: #991b1b;
+    }
+
+    .toast.success {
+      background: #166534;
+    }
+
+    .loading {
+      opacity: 0.65;
+      pointer-events: none;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .section-title {
+      margin: 2px 0 12px;
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .quick-total {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .mini-stat {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 13px;
+      box-shadow: var(--shadow);
+    }
+
+    .mini-stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-size: 20px;
+      letter-spacing: -0.03em;
+    }
+
+    .warning-box {
+      background: #fff7ed;
+      color: #9a3412;
+      border: 1px solid #fed7aa;
+      border-radius: 16px;
+      padding: 12px;
+      font-size: 13px;
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
+    .muted-text {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app" id="app">
+    <header>
+      <h1>❤️ Control Financiero de Jesi y Daniel ❤️</h1>
+      <p>Administración quincenal familiar</p>
+
+      <div class="status-line">
+        <span class="badge" id="onlineBadge">🟢 En línea</span>
+        <span class="badge" id="lastSync">Sin actualizar</span>
+      </div>
+    </header>
+
+    <main>
+      <section id="section-inicio" class="section active">
+        <div class="top-actions">
+          <button class="btn-secondary" onclick="showSection('gasto')">+ Registrar gasto</button>
+          <button class="btn-light" onclick="cargarDatos()">Actualizar</button>
+        </div>
+
+        <div class="quick-total">
+          <div class="mini-stat">
+            <span>Total disponible</span>
+            <strong id="totalDisponible">$0.00</strong>
+          </div>
+          <div class="mini-stat">
+            <span>Saldos vacíos</span>
+            <strong id="saldosVacios">0</strong>
+          </div>
+        </div>
+
+        <h2 class="section-title">Resumen</h2>
+        <div id="resumenCards" class="summary-grid"></div>
+      </section>
+
+      <section id="section-gasto" class="section">
+        <h2 class="section-title">Registrar gasto</h2>
+
+        <div class="card form-card">
+          <form id="formGasto">
+            <div>
+              <label for="tipoGasto">Tipo de gasto</label>
+              <select id="tipoGasto" required>
+                <option value="normal">Gasto normal</option>
+                <option value="otro">Otro gasto</option>
+              </select>
+            </div>
+
+            <div id="normalConceptoBox">
+              <label for="conceptoGasto">Concepto</label>
+              <select id="conceptoGasto" required></select>
+            </div>
+
+            <div id="otroBox" class="hidden">
+              <div>
+                <label for="detalleOtro">¿Cuál fue el gasto?</label>
+                <input id="detalleOtro" type="text" placeholder="Ej. Medicinas, refacción, taxi..." />
+              </div>
+
+              <div>
+                <label for="tomaDe">¿De dónde se tomó?</label>
+                <select id="tomaDe"></select>
+              </div>
+            </div>
+
+            <div>
+              <label for="montoGasto">Monto</label>
+              <input id="montoGasto" type="number" step="0.01" min="0.01" placeholder="Ej. 250" required />
+            </div>
+
+            <div>
+              <label for="notaGasto">Nota</label>
+              <textarea id="notaGasto" placeholder="Opcional"></textarea>
+            </div>
+
+            <button class="btn-primary btn-full" type="submit">
+              Guardar gasto
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <section id="section-saldos" class="section">
+        <h2 class="section-title">Administrar saldos</h2>
+
+        <div class="warning-box">
+          Los saldos se capturan manualmente. El monto sugerido solo es referencia de la quincena.
+        </div>
+
+        <div id="saldosAdmin"></div>
+      </section>
+
+      <section id="section-historial" class="section">
+        <div class="top-actions">
+          <button class="btn-secondary" onclick="cargarHistorial()">Movimientos</button>
+          <button class="btn-light" onclick="cargarAjustes()">Ajustes</button>
+        </div>
+
+        <h2 class="section-title" id="historialTitulo">Últimos movimientos</h2>
+        <div id="historialList" class="history-list"></div>
+      </section>
+    </main>
+
+    <nav class="nav">
+      <button id="nav-inicio" class="active" onclick="showSection('inicio')">
+        <span class="nav-icon">🏠</span>
+        <span>Inicio</span>
+      </button>
+      <button id="nav-gasto" onclick="showSection('gasto')">
+        <span class="nav-icon">➖</span>
+        <span>Gasto</span>
+      </button>
+      <button id="nav-saldos" onclick="showSection('saldos')">
+        <span class="nav-icon">💰</span>
+        <span>Saldos</span>
+      </button>
+      <button id="nav-historial" onclick="showSection('historial')">
+        <span class="nav-icon">📋</span>
+        <span>Historial</span>
+      </button>
+    </nav>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbxXkChXZT8zWpCAjCCUJkkqztQ2cNY493I1syHVnzsUhFZAaoxan6m7fsvjeJ5UoDY3/exec";
+    const TOKEN = "danielgastos2026";
+
+    let conceptos = [];
+    let resumen = [];
+    let currentSection = "inicio";
+
+    function money(value) {
+      if (value === "" || value === null || value === undefined || isNaN(Number(value))) {
+        return "Sin saldo";
+      }
+
+      return Number(value).toLocaleString("es-MX", {
+        style: "currency",
+        currency: "MXN"
+      });
+    }
+
+    function formatDate(value) {
+      if (!value) return "";
+
+      const d = new Date(value);
+      if (isNaN(d.getTime())) return String(value);
+
+      return d.toLocaleString("es-MX", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    }
+
+    function encodeParams(params) {
+      return Object.keys(params)
+        .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key] ?? "")}`)
+        .join("&");
+    }
+
+    function api(action, params = {}) {
+      return new Promise((resolve, reject) => {
+        const callbackName = "jsonp_" + Date.now() + "_" + Math.floor(Math.random() * 100000);
+
+        const query = encodeParams({
+          action,
+          token: TOKEN,
+          callback: callbackName,
+          ...params
+        });
+
+        const script = document.createElement("script");
+        script.src = `${API_URL}?${query}`;
+
+        const timeout = setTimeout(() => {
+          cleanup();
+          reject(new Error("Tiempo de espera agotado. Revisa tu conexión."));
+        }, 18000);
+
+        window[callbackName] = function(response) {
+          cleanup();
+
+          if (!response || response.ok !== true) {
+            reject(new Error(response && response.error ? response.error : "Respuesta inválida del servidor."));
+            return;
+          }
+
+          resolve(response.data);
+        };
+
+        script.onerror = function() {
+          cleanup();
+          reject(new Error("No se pudo conectar con el backend."));
+        };
+
+        function cleanup() {
+          clearTimeout(timeout);
+          delete window[callbackName];
+          if (script.parentNode) script.parentNode.removeChild(script);
+        }
+
+        document.body.appendChild(script);
+      });
+    }
+
+    function setLoading(isLoading) {
+      document.getElementById("app").classList.toggle("loading", isLoading);
+    }
+
+    function showToast(message, type = "") {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.className = "toast show";
+
+      if (type) toast.classList.add(type);
+
+      setTimeout(() => {
+        toast.className = "toast";
+      }, 3500);
+    }
+
+    function updateOnlineBadge() {
+      const badge = document.getElementById("onlineBadge");
+
+      if (navigator.onLine) {
+        badge.textContent = "🟢 En línea";
+      } else {
+        badge.textContent = "🔴 Sin conexión";
+      }
+    }
+
+    function setLastSync() {
+      const el = document.getElementById("lastSync");
+      const now = new Date();
+
+      el.textContent = now.toLocaleTimeString("es-MX", {
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    }
+
+    function showSection(name) {
+      currentSection = name;
+
+      document.querySelectorAll(".section").forEach(section => {
+        section.classList.remove("active");
+      });
+
+      document.querySelectorAll(".nav button").forEach(btn => {
+        btn.classList.remove("active");
+      });
+
+      document.getElementById(`section-${name}`).classList.add("active");
+      document.getElementById(`nav-${name}`).classList.add("active");
+
+      if (name === "historial") {
+        cargarHistorial();
+      }
+
+      if (name === "saldos") {
+        renderSaldosAdmin();
+      }
+    }
+
+    async function cargarDatos() {
+      try {
+        setLoading(true);
+
+        const data = await api("getResumen");
+
+        resumen = data || [];
+        conceptos = resumen.map(item => ({
+          concepto: item.concepto,
+          sugerido: item.sugerido
+        }));
+
+        llenarSelects();
+        renderResumen();
+        renderSaldosAdmin();
+        setLastSync();
+
+      } catch (error) {
+        showToast(error.message, "error");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    function llenarSelects() {
+      const conceptoGasto = document.getElementById("conceptoGasto");
+      const tomaDe = document.getElementById("tomaDe");
+
+      conceptoGasto.innerHTML = "";
+      tomaDe.innerHTML = "";
+
+      conceptos.forEach(item => {
+        const opt1 = document.createElement("option");
+        opt1.value = item.concepto;
+        opt1.textContent = item.concepto;
+        conceptoGasto.appendChild(opt1);
+
+        const opt2 = document.createElement("option");
+        opt2.value = item.concepto;
+        opt2.textContent = item.concepto;
+        tomaDe.appendChild(opt2);
+      });
+    }
+
+    function renderResumen() {
+      const cont = document.getElementById("resumenCards");
+      cont.innerHTML = "";
+
+      let totalDisponible = 0;
+      let saldosVacios = 0;
+
+      if (!resumen.length) {
+        cont.innerHTML = `<div class="empty-state">No hay datos para mostrar.</div>`;
+        document.getElementById("totalDisponible").textContent = "$0.00";
+        document.getElementById("saldosVacios").textContent = "0";
+        return;
+      }
+
+      resumen.forEach(item => {
+        const saldoVacio = item.saldoActual === "" || item.saldoActual === null || item.saldoActual === undefined;
+        const saldo = saldoVacio ? "" : Number(item.saldoActual);
+        const sugerido = Number(item.sugerido || 0);
+
+        if (saldoVacio) {
+          saldosVacios++;
+        } else {
+          totalDisponible += saldo;
+        }
+
+        let percent = 0;
+        if (!saldoVacio && sugerido > 0) {
+          percent = Math.max(0, Math.min(100, (saldo / sugerido) * 100));
+        }
+
+        const status = getStatus(saldoVacio, saldo, sugerido);
+
+        const card = document.createElement("div");
+        card.className = "card balance-card";
+
+        card.innerHTML = `
+          <div class="card-title-row">
+            <div>
+              <h3 class="concept-title">${item.concepto}</h3>
+              <div class="meta">Sugerido: ${money(item.sugerido)}</div>
+            </div>
+            <span class="pill ${status.className}">${status.label}</span>
+          </div>
+
+          <div class="saldo ${saldoVacio ? "empty" : ""}">
+            ${saldoVacio ? "Saldo no asignado" : money(saldo)}
+          </div>
+
+          <div class="progress">
+            <div class="progress-bar ${status.className}" style="width:${saldoVacio ? 0 : percent}%"></div>
+          </div>
+
+          <div class="meta">
+            ${item.ultimaActualizacion ? "Actualizado: " + formatDate(item.ultimaActualizacion) : "Sin actualización"}
+          </div>
+        `;
+
+        cont.appendChild(card);
+      });
+
+      document.getElementById("totalDisponible").textContent = money(totalDisponible);
+      document.getElementById("saldosVacios").textContent = saldosVacios;
+    }
+
+    function getStatus(saldoVacio, saldo, sugerido) {
+      if (saldoVacio) {
+        return {
+          label: "Vacío",
+          className: "gray"
+        };
+      }
+
+      if (saldo < 0) {
+        return {
+          label: "Negativo",
+          className: "red"
+        };
+      }
+
+      if (sugerido > 0 && saldo <= sugerido * 0.25) {
+        return {
+          label: "Bajo",
+          className: "yellow"
+        };
+      }
+
+      return {
+        label: "Disponible",
+        className: "green"
+      };
+    }
+
+    function renderSaldosAdmin() {
+      const cont = document.getElementById("saldosAdmin");
+      cont.innerHTML = "";
+
+      if (!resumen.length) {
+        cont.innerHTML = `<div class="empty-state">Primero actualiza los datos.</div>`;
+        return;
+      }
+
+      resumen.forEach(item => {
+        const actual = item.saldoActual === "" ? "" : item.saldoActual;
+
+        const card = document.createElement("div");
+        card.className = "card saldo-admin-card";
+
+        card.innerHTML = `
+          <div class="saldo-admin-row">
+            <div>
+              <h3 class="concept-title">${item.concepto}</h3>
+              <div class="meta">Saldo actual: ${money(actual)}</div>
+              <div class="meta">Sugerido: ${money(item.sugerido)}</div>
+            </div>
+            <span class="pill gray">Editar</span>
+          </div>
+
+          <div>
+            <label>Nuevo saldo</label>
+            <input id="saldo-${safeId(item.concepto)}" type="number" step="0.01" min="0" placeholder="Ej. ${item.sugerido}" value="${actual}" />
+          </div>
+
+          <div>
+            <label>Nota</label>
+            <input id="nota-${safeId(item.concepto)}" type="text" placeholder="Ej. Inicio de quincena" />
+          </div>
+
+          <div class="small-actions">
+            <button class="btn-secondary" onclick="usarSugerido('${escapeAttr(item.concepto)}', ${Number(item.sugerido || 0)})">Usar sugerido</button>
+            <button class="btn-primary" onclick="guardarSaldo('${escapeAttr(item.concepto)}')">Guardar</button>
+          </div>
+        `;
+
+        cont.appendChild(card);
+      });
+    }
+
+    function safeId(text) {
+      return String(text)
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]/g, "-");
+    }
+
+    function escapeAttr(text) {
+      return String(text).replace(/'/g, "\\'");
+    }
+
+    function usarSugerido(concepto, sugerido) {
+      const input = document.getElementById(`saldo-${safeId(concepto)}`);
+      if (input) input.value = sugerido;
+    }
+
+    async function guardarSaldo(concepto) {
+      const montoInput = document.getElementById(`saldo-${safeId(concepto)}`);
+      const notaInput = document.getElementById(`nota-${safeId(concepto)}`);
+
+      const monto = montoInput ? montoInput.value : "";
+      const nota = notaInput ? notaInput.value : "";
+
+      if (monto === "" || Number(monto) < 0) {
+        showToast("Captura un saldo válido.", "error");
+        return;
+      }
+
+      try {
+        setLoading(true);
+
+        await api("setSaldo", {
+          concepto,
+          monto,
+          nota
+        });
+
+        showToast("Saldo actualizado correctamente.", "success");
+        await cargarDatos();
+
+      } catch (error) {
+        showToast(error.message, "error");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    async function cargarHistorial() {
+      try {
+        setLoading(true);
+
+        document.getElementById("historialTitulo").textContent = "Últimos movimientos";
+
+        const data = await api("getMovimientos", {
+          limite: 50
+        });
+
+        renderHistorial(data || [], "movimientos");
+        setLastSync();
+
+      } catch (error) {
+        showToast(error.message, "error");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    async function cargarAjustes() {
+      try {
+        setLoading(true);
+
+        document.getElementById("historialTitulo").textContent = "Últimos ajustes de saldo";
+
+        const data = await api("getAjustes", {
+          limite: 50
+        });
+
+        renderHistorial(data || [], "ajustes");
+        setLastSync();
+
+      } catch (error) {
+        showToast(error.message, "error");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    function renderHistorial(data, tipo) {
+      const cont = document.getElementById("historialList");
+      cont.innerHTML = "";
+
+      if (!data.length) {
+        cont.innerHTML = `<div class="empty-state">No hay registros todavía.</div>`;
+        return;
+      }
+
+      data.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "card history-item";
+
+        if (tipo === "ajustes") {
+          card.innerHTML = `
+            <div class="history-top">
+              <div class="history-title">${item.concepto}</div>
+              <div class="history-amount">${money(item.saldoNuevo)}</div>
+            </div>
+            <div class="history-note">
+              Anterior: ${money(item.saldoAnterior)}<br>
+              Diferencia: ${money(item.diferencia)}<br>
+              ${item.nota ? "Nota: " + item.nota + "<br>" : ""}
+              ${formatDate(item.fecha)}
+            </div>
+          `;
+        } else {
+          const titulo = item.tipo === "Otro"
+            ? item.detalleOtro || "Otro gasto"
+            : item.concepto;
+
+          const descripcion = item.tipo === "Otro"
+            ? `Otro gasto tomado de ${item.seTomoDe}`
+            : `Gasto de ${item.concepto}`;
+
+          card.innerHTML = `
+            <div class="history-top">
+              <div class="history-title">${titulo}</div>
+              <div class="history-amount">-${money(item.monto)}</div>
+            </div>
+            <div class="history-note">
+              ${descripcion}<br>
+              ${item.nota ? "Nota: " + item.nota + "<br>" : ""}
+              ${formatDate(item.fecha)}
+            </div>
+          `;
+        }
+
+        cont.appendChild(card);
+      });
+    }
+
+    async function guardarGasto(event) {
+      event.preventDefault();
+
+      const tipoGasto = document.getElementById("tipoGasto").value;
+      const monto = document.getElementById("montoGasto").value;
+      const nota = document.getElementById("notaGasto").value;
+
+      let params = {
+        monto,
+        nota
+      };
+
+      if (!monto || Number(monto) <= 0) {
+        showToast("Captura un monto válido.", "error");
+        return;
+      }
+
+      if (tipoGasto === "otro") {
+        const detalleOtro = document.getElementById("detalleOtro").value.trim();
+        const tomaDe = document.getElementById("tomaDe").value;
+
+        if (!detalleOtro) {
+          showToast("Indica cuál fue el gasto.", "error");
+          return;
+        }
+
+        if (!tomaDe) {
+          showToast("Indica de dónde se tomó.", "error");
+          return;
+        }
+
+        params.concepto = "Otro";
+        params.detalleOtro = detalleOtro;
+        params.tomaDe = tomaDe;
+
+      } else {
+        const concepto = document.getElementById("conceptoGasto").value;
+
+        if (!concepto) {
+          showToast("Selecciona un concepto.", "error");
+          return;
+        }
+
+        params.concepto = concepto;
+      }
+
+      try {
+        setLoading(true);
+
+        const result = await api("addGasto", params);
+
+        showToast(`Gasto guardado. Nuevo saldo: ${money(result.saldoNuevo)}`, "success");
+
+        document.getElementById("formGasto").reset();
+        toggleTipoGasto();
+
+        await cargarDatos();
+        showSection("inicio");
+
+      } catch (error) {
+        showToast(error.message, "error");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    function toggleTipoGasto() {
+      const tipo = document.getElementById("tipoGasto").value;
+      const normalBox = document.getElementById("normalConceptoBox");
+      const otroBox = document.getElementById("otroBox");
+
+      if (tipo === "otro") {
+        normalBox.classList.add("hidden");
+        otroBox.classList.remove("hidden");
+      } else {
+        normalBox.classList.remove("hidden");
+        otroBox.classList.add("hidden");
+      }
+    }
+
+    document.getElementById("formGasto").addEventListener("submit", guardarGasto);
+    document.getElementById("tipoGasto").addEventListener("change", toggleTipoGasto);
+
+    window.addEventListener("online", updateOnlineBadge);
+    window.addEventListener("offline", updateOnlineBadge);
+
+    updateOnlineBadge();
+    cargarDatos();
+  </script>
+</body>
+</html>
