@@ -40,7 +40,7 @@
       min-height: 100vh;
       margin: 0 auto;
       background: var(--bg);
-      padding-bottom: 90px;
+      padding-bottom: 92px;
     }
 
     header {
@@ -57,7 +57,7 @@
 
     header h1 {
       margin: 0;
-      font-size: 21px;
+      font-size: 20px;
       line-height: 1.2;
       letter-spacing: -0.02em;
     }
@@ -85,7 +85,7 @@
       color: white;
       border-radius: 999px;
       padding: 6px 10px;
-      font-weight: 600;
+      font-weight: 700;
       white-space: nowrap;
     }
 
@@ -98,14 +98,16 @@
       display: block;
     }
 
-    .top-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 14px;
+    .section-title {
+      margin: 2px 0 12px;
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
     }
 
-    .summary-grid {
+    .summary-grid,
+    .history-list,
+    .stack {
       display: grid;
       gap: 12px;
     }
@@ -118,12 +120,6 @@
       box-shadow: var(--shadow);
     }
 
-    .balance-card {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
     .card-title-row {
       display: flex;
       align-items: flex-start;
@@ -134,13 +130,14 @@
     .concept-title {
       margin: 0;
       font-size: 17px;
-      font-weight: 800;
+      font-weight: 900;
     }
 
     .saldo {
       font-size: 24px;
-      font-weight: 900;
+      font-weight: 950;
       letter-spacing: -0.03em;
+      margin-top: 6px;
     }
 
     .saldo.empty {
@@ -152,13 +149,14 @@
     .meta {
       color: var(--muted);
       font-size: 13px;
+      line-height: 1.35;
     }
 
     .pill {
       border-radius: 999px;
       padding: 5px 9px;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 900;
       white-space: nowrap;
     }
 
@@ -182,12 +180,63 @@
       background: #f3f4f6;
     }
 
+    .quick-total {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .mini-stat {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 13px;
+      box-shadow: var(--shadow);
+    }
+
+    .mini-stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-size: 20px;
+      letter-spacing: -0.03em;
+    }
+
+    .big-stat {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 6px;
+    }
+
+    .big-stat span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .big-stat strong {
+      font-size: 28px;
+      letter-spacing: -0.04em;
+    }
+
     .progress {
       width: 100%;
       height: 9px;
       border-radius: 999px;
       overflow: hidden;
       background: #e5e7eb;
+      margin-top: 8px;
     }
 
     .progress-bar {
@@ -198,33 +247,20 @@
       transition: width 0.25s ease;
     }
 
-    .progress-bar.green {
-      background: var(--green);
-    }
-
-    .progress-bar.yellow {
-      background: var(--yellow);
-    }
-
-    .progress-bar.red {
-      background: var(--red);
-    }
+    .progress-bar.green { background: var(--green); }
+    .progress-bar.yellow { background: var(--yellow); }
+    .progress-bar.red { background: var(--red); }
 
     form {
       display: grid;
       gap: 13px;
     }
 
-    .form-card {
-      display: grid;
-      gap: 14px;
-    }
-
     label {
       display: block;
       margin-bottom: 6px;
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 900;
       color: #374151;
     }
 
@@ -260,7 +296,7 @@
       min-height: 48px;
       padding: 12px 14px;
       font-size: 15px;
-      font-weight: 900;
+      font-weight: 950;
       cursor: pointer;
       transition: transform 0.08s ease, opacity 0.2s ease;
     }
@@ -283,11 +319,6 @@
       color: #1d4ed8;
     }
 
-    .btn-danger {
-      background: #fee2e2;
-      color: #991b1b;
-    }
-
     .btn-light {
       background: #f3f4f6;
       color: #111827;
@@ -295,6 +326,19 @@
 
     .btn-full {
       width: 100%;
+    }
+
+    .top-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .two-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
     }
 
     .saldo-admin-card {
@@ -310,17 +354,6 @@
       align-items: flex-start;
     }
 
-    .small-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-
-    .history-list {
-      display: grid;
-      gap: 10px;
-    }
-
     .history-item {
       display: grid;
       gap: 6px;
@@ -333,12 +366,12 @@
     }
 
     .history-title {
-      font-weight: 900;
+      font-weight: 950;
       font-size: 15px;
     }
 
     .history-amount {
-      font-weight: 900;
+      font-weight: 950;
       color: var(--red);
     }
 
@@ -354,6 +387,99 @@
       padding: 24px 12px;
     }
 
+    details {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 14px;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .week-summary {
+      display: grid;
+      gap: 6px;
+    }
+
+    .week-title-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .day-list {
+      display: grid;
+      gap: 10px;
+      padding: 0 14px 14px;
+    }
+
+    .day-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      background: #fafafa;
+      display: grid;
+      gap: 6px;
+    }
+
+    .day-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .movement-mini {
+      border-top: 1px solid var(--border);
+      margin-top: 6px;
+      padding-top: 6px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .warning-box {
+      background: #fff7ed;
+      color: #9a3412;
+      border: 1px solid #fed7aa;
+      border-radius: 16px;
+      padding: 12px;
+      font-size: 13px;
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
+    .ok-box {
+      background: #f0fdf4;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      border-radius: 16px;
+      padding: 12px;
+      font-size: 13px;
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
+    .bad-box {
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+      border-radius: 16px;
+      padding: 12px;
+      font-size: 13px;
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
     .nav {
       position: fixed;
       left: 50%;
@@ -365,8 +491,8 @@
       background: white;
       border-top: 1px solid var(--border);
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      padding: 8px 8px 10px;
+      grid-template-columns: repeat(5, 1fr);
+      padding: 8px 6px 10px;
       box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.10);
     }
 
@@ -375,11 +501,11 @@
       border-radius: 16px;
       background: transparent;
       color: var(--muted);
-      font-size: 12px;
+      font-size: 11px;
       display: grid;
       place-items: center;
       gap: 2px;
-      padding: 6px 4px;
+      padding: 6px 2px;
     }
 
     .nav button.active {
@@ -388,7 +514,7 @@
     }
 
     .nav-icon {
-      font-size: 20px;
+      font-size: 19px;
       line-height: 1;
     }
 
@@ -414,13 +540,8 @@
       display: block;
     }
 
-    .toast.error {
-      background: #991b1b;
-    }
-
-    .toast.success {
-      background: #166534;
-    }
+    .toast.error { background: #991b1b; }
+    .toast.success { background: #166534; }
 
     .loading {
       opacity: 0.65;
@@ -429,59 +550,6 @@
 
     .hidden {
       display: none !important;
-    }
-
-    .section-title {
-      margin: 2px 0 12px;
-      font-size: 20px;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-    }
-
-    .quick-total {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .mini-stat {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 13px;
-      box-shadow: var(--shadow);
-    }
-
-    .mini-stat span {
-      display: block;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 800;
-      margin-bottom: 4px;
-    }
-
-    .mini-stat strong {
-      display: block;
-      font-size: 20px;
-      letter-spacing: -0.03em;
-    }
-
-    .warning-box {
-      background: #fff7ed;
-      color: #9a3412;
-      border: 1px solid #fed7aa;
-      border-radius: 16px;
-      padding: 12px;
-      font-size: 13px;
-      line-height: 1.35;
-      margin-bottom: 12px;
-    }
-
-    .muted-text {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.35;
     }
   </style>
 </head>
@@ -502,7 +570,6 @@
       <section id="section-inicio" class="section active">
         <div class="top-actions">
           <button class="btn-secondary" onclick="showSection('gasto')">+ Registrar gasto</button>
-          <button class="btn-light" onclick="cargarDatos()">Actualizar</button>
         </div>
 
         <div class="quick-total">
@@ -520,31 +587,52 @@
         <div id="resumenCards" class="summary-grid"></div>
       </section>
 
+      <section id="section-comida" class="section">
+        <div class="top-actions">
+          <button class="btn-primary" onclick="cargarTodo()">Actualizar</button>
+        </div>
+
+        <h2 class="section-title">Comida semanal</h2>
+
+        <div id="comidaResumen" class="stack"></div>
+      </section>
+
       <section id="section-gasto" class="section">
         <h2 class="section-title">Registrar gasto</h2>
 
-        <div class="card form-card">
+        <div class="card">
           <form id="formGasto">
+            <div>
+              <label for="fechaGasto">Fecha del gasto</label>
+              <input id="fechaGasto" type="date" required />
+            </div>
+
             <div>
               <label for="tipoGasto">Tipo de gasto</label>
               <select id="tipoGasto" required>
+                <option value="comida_diaria">Comida diaria</option>
                 <option value="normal">Gasto normal</option>
-                <option value="otro">Otro gasto</option>
+                <option value="extra">Gasto extra</option>
               </select>
             </div>
 
-            <div id="normalConceptoBox">
-              <label for="conceptoGasto">Concepto</label>
-              <select id="conceptoGasto" required></select>
+            <div id="boxComida">
+              <label for="conceptoComida">Concepto de comida</label>
+              <input id="conceptoComida" type="text" placeholder="Ej. Desayuno, comida, cena, despensa..." />
             </div>
 
-            <div id="otroBox" class="hidden">
+            <div id="boxNormal" class="hidden">
+              <label for="conceptoNormal">Concepto</label>
+              <select id="conceptoNormal"></select>
+            </div>
+
+            <div id="boxExtra" class="hidden">
               <div>
-                <label for="detalleOtro">¿Cuál fue el gasto?</label>
-                <input id="detalleOtro" type="text" placeholder="Ej. Medicinas, refacción, taxi..." />
+                <label for="conceptoExtra">Concepto del gasto extra</label>
+                <input id="conceptoExtra" type="text" placeholder="Ej. Medicinas, taxi, copias..." />
               </div>
 
-              <div>
+              <div style="margin-top: 13px;">
                 <label for="tomaDe">¿De dónde se tomó?</label>
                 <select id="tomaDe"></select>
               </div>
@@ -571,14 +659,14 @@
         <h2 class="section-title">Administrar saldos</h2>
 
         <div class="warning-box">
-          Los saldos se capturan manualmente. El monto sugerido solo es referencia de la quincena.
+          Los saldos se capturan manualmente. El monto sugerido solo es referencia.
         </div>
 
         <div id="saldosAdmin"></div>
       </section>
 
       <section id="section-historial" class="section">
-        <div class="top-actions">
+        <div class="two-actions" style="margin-bottom: 14px;">
           <button class="btn-secondary" onclick="cargarHistorial()">Movimientos</button>
           <button class="btn-light" onclick="cargarAjustes()">Ajustes</button>
         </div>
@@ -592,6 +680,10 @@
       <button id="nav-inicio" class="active" onclick="showSection('inicio')">
         <span class="nav-icon">🏠</span>
         <span>Inicio</span>
+      </button>
+      <button id="nav-comida" onclick="showSection('comida')">
+        <span class="nav-icon">🍽️</span>
+        <span>Comida</span>
       </button>
       <button id="nav-gasto" onclick="showSection('gasto')">
         <span class="nav-icon">➖</span>
@@ -616,7 +708,7 @@
 
     let conceptos = [];
     let resumen = [];
-    let currentSection = "inicio";
+    let resumenComida = null;
 
     function money(value) {
       if (value === "" || value === null || value === undefined || isNaN(Number(value))) {
@@ -642,6 +734,25 @@
         hour: "2-digit",
         minute: "2-digit"
       });
+    }
+
+    function fechaCorta(value) {
+      if (!value) return "";
+      const d = new Date(value + "T00:00:00");
+      if (isNaN(d.getTime())) return value;
+
+      return d.toLocaleDateString("es-MX", {
+        day: "2-digit",
+        month: "short"
+      });
+    }
+
+    function todayISO() {
+      const d = new Date();
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      return `${y}-${m}-${day}`;
     }
 
     function encodeParams(params) {
@@ -713,12 +824,7 @@
 
     function updateOnlineBadge() {
       const badge = document.getElementById("onlineBadge");
-
-      if (navigator.onLine) {
-        badge.textContent = "🟢 En línea";
-      } else {
-        badge.textContent = "🔴 Sin conexión";
-      }
+      badge.textContent = navigator.onLine ? "🟢 En línea" : "🔴 Sin conexión";
     }
 
     function setLastSync() {
@@ -732,8 +838,6 @@
     }
 
     function showSection(name) {
-      currentSection = name;
-
       document.querySelectorAll(".section").forEach(section => {
         section.classList.remove("active");
       });
@@ -745,22 +849,23 @@
       document.getElementById(`section-${name}`).classList.add("active");
       document.getElementById(`nav-${name}`).classList.add("active");
 
-      if (name === "historial") {
-        cargarHistorial();
-      }
-
-      if (name === "saldos") {
-        renderSaldosAdmin();
-      }
+      if (name === "historial") cargarHistorial();
+      if (name === "saldos") renderSaldosAdmin();
+      if (name === "comida") renderComida();
     }
 
-    async function cargarDatos() {
+    async function cargarTodo() {
       try {
         setLoading(true);
 
-        const data = await api("getResumen");
+        const [dataResumen, dataComida] = await Promise.all([
+          api("getResumen"),
+          api("getResumenComida")
+        ]);
 
-        resumen = data || [];
+        resumen = dataResumen || [];
+        resumenComida = dataComida || null;
+
         conceptos = resumen.map(item => ({
           concepto: item.concepto,
           sugerido: item.sugerido
@@ -769,7 +874,10 @@
         llenarSelects();
         renderResumen();
         renderSaldosAdmin();
+        renderComida();
         setLastSync();
+
+        showToast("Datos actualizados.", "success");
 
       } catch (error) {
         showToast(error.message, "error");
@@ -779,17 +887,17 @@
     }
 
     function llenarSelects() {
-      const conceptoGasto = document.getElementById("conceptoGasto");
+      const conceptoNormal = document.getElementById("conceptoNormal");
       const tomaDe = document.getElementById("tomaDe");
 
-      conceptoGasto.innerHTML = "";
+      conceptoNormal.innerHTML = "";
       tomaDe.innerHTML = "";
 
       conceptos.forEach(item => {
         const opt1 = document.createElement("option");
         opt1.value = item.concepto;
         opt1.textContent = item.concepto;
-        conceptoGasto.appendChild(opt1);
+        conceptoNormal.appendChild(opt1);
 
         const opt2 = document.createElement("option");
         opt2.value = item.concepto;
@@ -817,11 +925,8 @@
         const saldo = saldoVacio ? "" : Number(item.saldoActual);
         const sugerido = Number(item.sugerido || 0);
 
-        if (saldoVacio) {
-          saldosVacios++;
-        } else {
-          totalDisponible += saldo;
-        }
+        if (saldoVacio) saldosVacios++;
+        else totalDisponible += saldo;
 
         let percent = 0;
         if (!saldoVacio && sugerido > 0) {
@@ -831,7 +936,7 @@
         const status = getStatus(saldoVacio, saldo, sugerido);
 
         const card = document.createElement("div");
-        card.className = "card balance-card";
+        card.className = "card";
 
         card.innerHTML = `
           <div class="card-title-row">
@@ -850,7 +955,7 @@
             <div class="progress-bar ${status.className}" style="width:${saldoVacio ? 0 : percent}%"></div>
           </div>
 
-          <div class="meta">
+          <div class="meta" style="margin-top: 7px;">
             ${item.ultimaActualizacion ? "Actualizado: " + formatDate(item.ultimaActualizacion) : "Sin actualización"}
           </div>
         `;
@@ -863,31 +968,137 @@
     }
 
     function getStatus(saldoVacio, saldo, sugerido) {
-      if (saldoVacio) {
-        return {
-          label: "Vacío",
-          className: "gray"
-        };
+      if (saldoVacio) return { label: "Vacío", className: "gray" };
+      if (saldo < 0) return { label: "Negativo", className: "red" };
+      if (sugerido > 0 && saldo <= sugerido * 0.25) return { label: "Bajo", className: "yellow" };
+      return { label: "Disponible", className: "green" };
+    }
+
+    function renderComida() {
+      const cont = document.getElementById("comidaResumen");
+      cont.innerHTML = "";
+
+      if (!resumenComida) {
+        cont.innerHTML = `<div class="empty-state">Presiona Actualizar para cargar comida semanal.</div>`;
+        return;
       }
 
-      if (saldo < 0) {
-        return {
-          label: "Negativo",
-          className: "red"
-        };
+      const hoy = resumenComida.hoy;
+      const proy = resumenComida.proyeccion;
+      const quincena = resumenComida.quincena;
+
+      const estado = proy && proy.alcanzaSemana === false ? "bad-box" : "ok-box";
+
+      const top = document.createElement("div");
+      top.className = "stack";
+
+      top.innerHTML = `
+        <div class="card">
+          <div class="meta">Quincena actual</div>
+          <h3 class="concept-title" style="margin-top: 4px;">${quincena.etiqueta}</h3>
+          <div class="meta" style="margin-top: 6px;">
+            Diario: ${money(resumenComida.config.presupuestoDiario)} · Semana: ${money(resumenComida.config.presupuestoSemanal)}
+          </div>
+        </div>
+
+        <div class="quick-total">
+          <div class="big-stat">
+            <span>Disponible hoy</span>
+            <strong>${hoy ? money(hoy.disponibleDia) : "Sin dato"}</strong>
+          </div>
+          <div class="big-stat">
+            <span>Gastado hoy</span>
+            <strong>${hoy ? money(hoy.gastadoDia) : "Sin dato"}</strong>
+          </div>
+        </div>
+
+        <div class="${estado}">
+          ${renderProyeccionText(proy)}
+        </div>
+      `;
+
+      cont.appendChild(top);
+
+      resumenComida.semanas.forEach((semana, index) => {
+        const details = document.createElement("details");
+        details.open = index === 0;
+
+        details.innerHTML = `
+          <summary>
+            <div class="week-summary">
+              <div class="week-title-row">
+                <div>
+                  <h3 class="concept-title">${semana.semana}</h3>
+                  <div class="meta">${fechaCorta(semana.fechaInicio)} al ${fechaCorta(semana.fechaFin)}</div>
+                </div>
+                <span class="pill ${semana.disponibleSemana < 0 ? "red" : semana.disponibleSemana <= 180 ? "yellow" : "green"}">
+                  ${money(semana.disponibleSemana)}
+                </span>
+              </div>
+              <div class="meta">
+                Gastado: ${money(semana.gastadoSemana)} · Presupuesto: ${money(semana.presupuestoSemanal)}
+              </div>
+            </div>
+          </summary>
+
+          <div class="day-list">
+            ${semana.dias.map(renderDia).join("")}
+          </div>
+        `;
+
+        cont.appendChild(details);
+      });
+    }
+
+    function renderProyeccionText(proy) {
+      if (!proy || proy.saldoActualComida === "") {
+        return "No hay saldo actual de Comida capturado.";
       }
 
-      if (sugerido > 0 && saldo <= sugerido * 0.25) {
-        return {
-          label: "Bajo",
-          className: "yellow"
-        };
+      if (proy.alcanzaSemana) {
+        return `
+          ✅ Te alcanza para terminar la semana.<br>
+          Saldo actual de comida: <strong>${money(proy.saldoActualComida)}</strong><br>
+          Necesario estimado: <strong>${money(proy.necesarioRestanteSemana)}</strong><br>
+          Diferencia: <strong>${money(proy.faltanteEstimado)}</strong>
+        `;
       }
 
-      return {
-        label: "Disponible",
-        className: "green"
-      };
+      return `
+        ⚠️ No alcanza para terminar la semana al ritmo de ${money(180)} diarios.<br>
+        Saldo actual de comida: <strong>${money(proy.saldoActualComida)}</strong><br>
+        Necesario estimado: <strong>${money(proy.necesarioRestanteSemana)}</strong><br>
+        Faltante: <strong>${money(Math.abs(proy.faltanteEstimado))}</strong>
+      `;
+    }
+
+    function renderDia(dia) {
+      const cls = dia.restanteDia < 0 ? "red" : dia.restanteDia <= 50 ? "yellow" : "green";
+
+      const movimientos = dia.movimientos && dia.movimientos.length
+        ? dia.movimientos.map(m => `
+            <div class="movement-mini">
+              ${m.concepto} · ${money(m.monto)}
+              ${m.nota ? "<br>" + m.nota : ""}
+            </div>
+          `).join("")
+        : "";
+
+      return `
+        <div class="day-card">
+          <div class="day-row">
+            <div>
+              <strong>${dia.dia} ${fechaCorta(dia.fecha)}</strong>
+              <div class="meta">Disponible: ${money(dia.disponibleDia)}</div>
+            </div>
+            <span class="pill ${cls}">${money(dia.restanteDia)}</span>
+          </div>
+          <div class="meta">
+            Gastado: ${money(dia.gastadoDia)} · Arrastre: ${money(dia.ajusteAnterior)}
+          </div>
+          ${movimientos}
+        </div>
+      `;
     }
 
     function renderSaldosAdmin() {
@@ -917,7 +1128,7 @@
 
           <div>
             <label>Nuevo saldo</label>
-            <input id="saldo-${safeId(item.concepto)}" type="number" step="0.01" min="0" placeholder="Ej. ${item.sugerido}" value="${actual}" />
+            <input id="saldo-${safeId(item.concepto)}" type="number" step="0.01" placeholder="Ej. ${item.sugerido}" value="${actual}" />
           </div>
 
           <div>
@@ -925,7 +1136,7 @@
             <input id="nota-${safeId(item.concepto)}" type="text" placeholder="Ej. Inicio de quincena" />
           </div>
 
-          <div class="small-actions">
+          <div class="two-actions">
             <button class="btn-secondary" onclick="usarSugerido('${escapeAttr(item.concepto)}', ${Number(item.sugerido || 0)})">Usar sugerido</button>
             <button class="btn-primary" onclick="guardarSaldo('${escapeAttr(item.concepto)}')">Guardar</button>
           </div>
@@ -959,7 +1170,7 @@
       const monto = montoInput ? montoInput.value : "";
       const nota = notaInput ? notaInput.value : "";
 
-      if (monto === "" || Number(monto) < 0) {
+      if (monto === "" || isNaN(Number(monto))) {
         showToast("Captura un saldo válido.", "error");
         return;
       }
@@ -974,7 +1185,7 @@
         });
 
         showToast("Saldo actualizado correctamente.", "success");
-        await cargarDatos();
+        await cargarTodo();
 
       } catch (error) {
         showToast(error.message, "error");
@@ -1050,13 +1261,10 @@
             </div>
           `;
         } else {
-          const titulo = item.tipo === "Otro"
-            ? item.detalleOtro || "Otro gasto"
-            : item.concepto;
-
-          const descripcion = item.tipo === "Otro"
-            ? `Otro gasto tomado de ${item.seTomoDe}`
-            : `Gasto de ${item.concepto}`;
+          const titulo = item.concepto || item.detalle || "Movimiento";
+          const descripcion = item.tipoGasto === "Gasto extra"
+            ? `Gasto extra tomado de ${item.seTomoDe}`
+            : `${item.tipoGasto || "Gasto"} · ${item.seTomoDe || item.concepto}`;
 
           card.innerHTML = `
             <div class="history-top">
@@ -1066,7 +1274,7 @@
             <div class="history-note">
               ${descripcion}<br>
               ${item.nota ? "Nota: " + item.nota + "<br>" : ""}
-              ${formatDate(item.fecha)}
+              ${formatDate(item.fechaGasto || item.fechaRegistro || item.fecha)}
             </div>
           `;
         }
@@ -1079,46 +1287,51 @@
       event.preventDefault();
 
       const tipoGasto = document.getElementById("tipoGasto").value;
+      const fechaGasto = document.getElementById("fechaGasto").value;
       const monto = document.getElementById("montoGasto").value;
       const nota = document.getElementById("notaGasto").value;
 
-      let params = {
-        monto,
-        nota
-      };
+      if (!fechaGasto) {
+        showToast("Selecciona la fecha del gasto.", "error");
+        return;
+      }
 
       if (!monto || Number(monto) <= 0) {
         showToast("Captura un monto válido.", "error");
         return;
       }
 
-      if (tipoGasto === "otro") {
-        const detalleOtro = document.getElementById("detalleOtro").value.trim();
-        const tomaDe = document.getElementById("tomaDe").value;
+      let params = {
+        tipoGasto,
+        fechaGasto,
+        monto,
+        nota
+      };
 
-        if (!detalleOtro) {
-          showToast("Indica cuál fue el gasto.", "error");
-          return;
-        }
-
-        if (!tomaDe) {
-          showToast("Indica de dónde se tomó.", "error");
-          return;
-        }
-
-        params.concepto = "Otro";
-        params.detalleOtro = detalleOtro;
-        params.tomaDe = tomaDe;
-
-      } else {
-        const concepto = document.getElementById("conceptoGasto").value;
+      if (tipoGasto === "comida_diaria") {
+        const concepto = document.getElementById("conceptoComida").value.trim();
 
         if (!concepto) {
-          showToast("Selecciona un concepto.", "error");
+          showToast("Indica el concepto de comida.", "error");
           return;
         }
 
         params.concepto = concepto;
+
+      } else if (tipoGasto === "normal") {
+        params.concepto = document.getElementById("conceptoNormal").value;
+
+      } else if (tipoGasto === "extra") {
+        const concepto = document.getElementById("conceptoExtra").value.trim();
+        const tomaDe = document.getElementById("tomaDe").value;
+
+        if (!concepto) {
+          showToast("Indica el concepto del gasto extra.", "error");
+          return;
+        }
+
+        params.concepto = concepto;
+        params.tomaDe = tomaDe;
       }
 
       try {
@@ -1129,10 +1342,11 @@
         showToast(`Gasto guardado. Nuevo saldo: ${money(result.saldoNuevo)}`, "success");
 
         document.getElementById("formGasto").reset();
+        document.getElementById("fechaGasto").value = todayISO();
         toggleTipoGasto();
 
-        await cargarDatos();
-        showSection("inicio");
+        await cargarTodo();
+        showSection("comida");
 
       } catch (error) {
         showToast(error.message, "error");
@@ -1143,16 +1357,10 @@
 
     function toggleTipoGasto() {
       const tipo = document.getElementById("tipoGasto").value;
-      const normalBox = document.getElementById("normalConceptoBox");
-      const otroBox = document.getElementById("otroBox");
 
-      if (tipo === "otro") {
-        normalBox.classList.add("hidden");
-        otroBox.classList.remove("hidden");
-      } else {
-        normalBox.classList.remove("hidden");
-        otroBox.classList.add("hidden");
-      }
+      document.getElementById("boxComida").classList.toggle("hidden", tipo !== "comida_diaria");
+      document.getElementById("boxNormal").classList.toggle("hidden", tipo !== "normal");
+      document.getElementById("boxExtra").classList.toggle("hidden", tipo !== "extra");
     }
 
     document.getElementById("formGasto").addEventListener("submit", guardarGasto);
@@ -1162,7 +1370,9 @@
     window.addEventListener("offline", updateOnlineBadge);
 
     updateOnlineBadge();
-    cargarDatos();
+    document.getElementById("fechaGasto").value = todayISO();
+    toggleTipoGasto();
+    cargarTodo();
   </script>
 </body>
 </html>
