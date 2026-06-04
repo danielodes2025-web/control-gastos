@@ -105,9 +105,9 @@
       letter-spacing: -0.02em;
     }
 
+    .stack,
     .summary-grid,
-    .history-list,
-    .stack {
+    .history-list {
       display: grid;
       gap: 12px;
     }
@@ -425,11 +425,11 @@
 
     .day-card {
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 16px;
       padding: 12px;
       background: #fafafa;
       display: grid;
-      gap: 6px;
+      gap: 8px;
     }
 
     .day-row {
@@ -439,12 +439,43 @@
       gap: 10px;
     }
 
+    .day-title {
+      font-weight: 950;
+      font-size: 15px;
+    }
+
+    .day-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .day-metric {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 9px;
+    }
+
+    .day-metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 2px;
+    }
+
+    .day-metric strong {
+      font-size: 15px;
+    }
+
     .movement-mini {
       border-top: 1px solid var(--border);
       margin-top: 6px;
-      padding-top: 6px;
+      padding-top: 7px;
       font-size: 13px;
       color: var(--muted);
+      line-height: 1.35;
     }
 
     .warning-box {
@@ -473,6 +504,17 @@
       background: #fef2f2;
       color: #991b1b;
       border: 1px solid #fecaca;
+      border-radius: 16px;
+      padding: 12px;
+      font-size: 13px;
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
+    .info-box {
+      background: #eff6ff;
+      color: #1e40af;
+      border: 1px solid #bfdbfe;
       border-radius: 16px;
       padding: 12px;
       font-size: 13px;
@@ -593,12 +635,13 @@
         </div>
 
         <h2 class="section-title">Comida semanal</h2>
-
         <div id="comidaResumen" class="stack"></div>
       </section>
 
       <section id="section-gasto" class="section">
         <h2 class="section-title">Registrar gasto</h2>
+
+        <div id="estadoDiaGasto"></div>
 
         <div class="card">
           <form id="formGasto">
@@ -852,6 +895,7 @@
       if (name === "historial") cargarHistorial();
       if (name === "saldos") renderSaldosAdmin();
       if (name === "comida") renderComida();
+      if (name === "gasto") renderEstadoDiaGasto();
     }
 
     async function cargarTodo() {
@@ -875,6 +919,7 @@
         renderResumen();
         renderSaldosAdmin();
         renderComida();
+        renderEstadoDiaGasto();
         setLastSync();
 
         showToast("Datos actualizados.", "success");
@@ -974,6 +1019,76 @@
       return { label: "Disponible", className: "green" };
     }
 
+    function getDiaPorFecha(fecha) {
+      if (!resumenComida || !resumenComida.dias) return null;
+      return resumenComida.dias.find(d => d.fecha === fecha) || null;
+    }
+
+    function getDisponibleVisible(dia) {
+      if (!dia) return null;
+
+      const base = Number(dia.disponibleBase || 180);
+      const excesoAnterior = Number(dia.ajusteAnterior || 0);
+
+      if (excesoAnterior < 0) {
+        return base + excesoAnterior;
+      }
+
+      return base;
+    }
+
+    function getResultadoVisible(dia) {
+      if (!dia) return null;
+      return getDisponibleVisible(dia) - Number(dia.gastadoDia || 0);
+    }
+
+    function renderEstadoDiaGasto() {
+      const cont = document.getElementById("estadoDiaGasto");
+      const fecha = document.getElementById("fechaGasto") ? document.getElementById("fechaGasto").value : "";
+
+      if (!cont) return;
+
+      if (!resumenComida || !fecha) {
+        cont.innerHTML = `
+          <div class="info-box">
+            Presiona <strong>Actualizar</strong> en la sección Comida para consultar el saldo diario.
+          </div>
+        `;
+        return;
+      }
+
+      const dia = getDiaPorFecha(fecha);
+
+      if (!dia) {
+        cont.innerHTML = `
+          <div class="info-box">
+            La fecha seleccionada no está dentro de la quincena actual mostrada.
+          </div>
+        `;
+        return;
+      }
+
+      const disponible = getDisponibleVisible(dia);
+      const gastado = Number(dia.gastadoDia || 0);
+      const resultado = getResultadoVisible(dia);
+      const excesoAnterior = Number(dia.ajusteAnterior || 0);
+
+      let boxClass = disponible < 0 ? "bad-box" : "ok-box";
+      let mensaje = disponible < 0
+        ? `⚠️ Saldo diario negativo. Vienes excedido por <strong>${money(Math.abs(disponible))}</strong>.`
+        : `Disponible para comida este día: <strong>${money(disponible)}</strong>.`;
+
+      cont.innerHTML = `
+        <div class="${boxClass}">
+          ${mensaje}<br>
+          Saldo diario base: <strong>${money(dia.disponibleBase)}</strong><br>
+          ${excesoAnterior < 0 ? `Exceso del día anterior: <strong>-${money(Math.abs(excesoAnterior))}</strong><br>` : ""}
+          Ya gastado ese día: <strong>${money(gastado)}</strong><br>
+          Resultado si no agregas más: <strong>${money(resultado)}</strong>
+        </div>
+      `;
+    }
+
     function renderComida() {
       const cont = document.getElementById("comidaResumen");
       cont.innerHTML = "";
@@ -987,7 +1102,8 @@
       const proy = resumenComida.proyeccion;
       const quincena = resumenComida.quincena;
 
-      const estado = proy && proy.alcanzaSemana === false ? "bad-box" : "ok-box";
+      const disponibleHoy = hoy ? getDisponibleVisible(hoy) : null;
+      const resultadoHoy = hoy ? getResultadoVisible(hoy) : null;
 
       const top = document.createElement("div");
       top.className = "stack";
@@ -997,14 +1113,14 @@
           <div class="meta">Quincena actual</div>
           <h3 class="concept-title" style="margin-top: 4px;">${quincena.etiqueta}</h3>
           <div class="meta" style="margin-top: 6px;">
-            Diario: ${money(resumenComida.config.presupuestoDiario)} · Semana: ${money(resumenComida.config.presupuestoSemanal)}
+            Saldo diario: ${money(resumenComida.config.presupuestoDiario)} · Semana: ${money(resumenComida.config.presupuestoSemanal)}
           </div>
         </div>
 
         <div class="quick-total">
           <div class="big-stat">
             <span>Disponible hoy</span>
-            <strong>${hoy ? money(hoy.disponibleDia) : "Sin dato"}</strong>
+            <strong>${hoy ? money(disponibleHoy) : "Sin dato"}</strong>
           </div>
           <div class="big-stat">
             <span>Gastado hoy</span>
@@ -1012,9 +1128,7 @@
           </div>
         </div>
 
-        <div class="${estado}">
-          ${renderProyeccionText(proy)}
-        </div>
+        ${renderResumenComidaSemana(proy, resultadoHoy)}
       `;
 
       cont.appendChild(top);
@@ -1050,35 +1164,48 @@
       });
     }
 
-    function renderProyeccionText(proy) {
+    function renderResumenComidaSemana(proy, resultadoHoy) {
       if (!proy || proy.saldoActualComida === "") {
-        return "No hay saldo actual de Comida capturado.";
+        return `
+          <div class="info-box">
+            No hay saldo actual de Comida capturado.
+          </div>
+        `;
       }
 
-      if (proy.alcanzaSemana) {
+      const clase = resultadoHoy !== null && resultadoHoy < 0 ? "bad-box" : "ok-box";
+
+      if (resultadoHoy !== null && resultadoHoy < 0) {
         return `
-          ✅ Te alcanza para terminar la semana.<br>
-          Saldo actual de comida: <strong>${money(proy.saldoActualComida)}</strong><br>
-          Necesario estimado: <strong>${money(proy.necesarioRestanteSemana)}</strong><br>
-          Diferencia: <strong>${money(proy.faltanteEstimado)}</strong>
+          <div class="${clase}">
+            ⚠️ Hoy estás en negativo por <strong>${money(Math.abs(resultadoHoy))}</strong>.<br>
+            Saldo actual de comida: <strong>${money(proy.saldoActualComida)}</strong><br>
+            Disponible estimado de la semana: <strong>${money(proy.faltanteEstimado)}</strong>
+          </div>
         `;
       }
 
       return `
-        ⚠️ No alcanza para terminar la semana al ritmo de ${money(180)} diarios.<br>
-        Saldo actual de comida: <strong>${money(proy.saldoActualComida)}</strong><br>
-        Necesario estimado: <strong>${money(proy.necesarioRestanteSemana)}</strong><br>
-        Faltante: <strong>${money(Math.abs(proy.faltanteEstimado))}</strong>
+        <div class="${clase}">
+          ✅ Control semanal activo.<br>
+          Saldo actual de comida: <strong>${money(proy.saldoActualComida)}</strong><br>
+          Disponible estimado de la semana: <strong>${money(proy.faltanteEstimado)}</strong>
+        </div>
       `;
     }
 
     function renderDia(dia) {
-      const cls = dia.restanteDia < 0 ? "red" : dia.restanteDia <= 50 ? "yellow" : "green";
+      const disponible = getDisponibleVisible(dia);
+      const gastado = Number(dia.gastadoDia || 0);
+      const resultado = getResultadoVisible(dia);
+      const excesoAnterior = Number(dia.ajusteAnterior || 0);
+
+      const cls = resultado < 0 ? "red" : resultado <= 50 ? "yellow" : "green";
 
       const movimientos = dia.movimientos && dia.movimientos.length
         ? dia.movimientos.map(m => `
             <div class="movement-mini">
-              ${m.concepto} · ${money(m.monto)}
+              <strong>${money(m.monto)}</strong>
               ${m.nota ? "<br>" + m.nota : ""}
             </div>
           `).join("")
@@ -1088,14 +1215,33 @@
         <div class="day-card">
           <div class="day-row">
             <div>
-              <strong>${dia.dia} ${fechaCorta(dia.fecha)}</strong>
-              <div class="meta">Disponible: ${money(dia.disponibleDia)}</div>
+              <div class="day-title">${dia.dia} ${fechaCorta(dia.fecha)}</div>
+              <div class="meta">Saldo diario: ${money(dia.disponibleBase)}</div>
             </div>
-            <span class="pill ${cls}">${money(dia.restanteDia)}</span>
+            <span class="pill ${cls}">${money(resultado)}</span>
           </div>
+
+          ${excesoAnterior < 0 ? `
+            <div class="bad-box" style="margin: 0;">
+              Exceso del día anterior: <strong>-${money(Math.abs(excesoAnterior))}</strong>
+            </div>
+          ` : ""}
+
+          <div class="day-grid">
+            <div class="day-metric">
+              <span>Disponible</span>
+              <strong>${money(disponible)}</strong>
+            </div>
+            <div class="day-metric">
+              <span>Gastado</span>
+              <strong>${money(gastado)}</strong>
+            </div>
+          </div>
+
           <div class="meta">
-            Gastado: ${money(dia.gastadoDia)} · Arrastre: ${money(dia.ajusteAnterior)}
+            Resultado del día: <strong>${money(resultado)}</strong>
           </div>
+
           ${movimientos}
         </div>
       `;
@@ -1361,10 +1507,13 @@
       document.getElementById("boxComida").classList.toggle("hidden", tipo !== "comida_diaria");
       document.getElementById("boxNormal").classList.toggle("hidden", tipo !== "normal");
       document.getElementById("boxExtra").classList.toggle("hidden", tipo !== "extra");
+
+      renderEstadoDiaGasto();
     }
 
     document.getElementById("formGasto").addEventListener("submit", guardarGasto);
     document.getElementById("tipoGasto").addEventListener("change", toggleTipoGasto);
+    document.getElementById("fechaGasto").addEventListener("change", renderEstadoDiaGasto);
 
     window.addEventListener("online", updateOnlineBadge);
     window.addEventListener("offline", updateOnlineBadge);
