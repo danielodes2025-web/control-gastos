@@ -958,6 +958,31 @@
         </div>
       </div>
 
+      <!-- Distribución Mensual Visual (KPI) -->
+      <div class="summary-card" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(99, 102, 241, 0.03)); border: 1px solid rgba(56, 189, 248, 0.12); display: flex; flex-direction: column; gap: 8px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 11px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Distribución Mensual (<span id="currentMonthName">Mes</span>)</span>
+          <span id="monthlyTotalSpent" style="font-size: 14px; font-weight: 800; color: var(--text-primary);">$0.00</span>
+        </div>
+        
+        <!-- Barra de progreso segmentada -->
+        <div style="width: 100%; height: 6px; background: rgba(255, 255, 255, 0.05); border-radius: 99px; overflow: hidden; display: flex; margin: 2px 0;">
+          <div id="monthlyComidaBar" style="width: 50%; height: 100%; background: var(--accent-blue); transition: width 0.3s ease;"></div>
+          <div id="monthlyGeneralBar" style="width: 50%; height: 100%; background: var(--text-muted); transition: width 0.3s ease;"></div>
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700;">
+          <div style="display: flex; align-items: center; gap: 4px;">
+            <span style="width: 6px; height: 6px; background: var(--accent-blue); border-radius: 50%; display: inline-block;"></span>
+            <span>Comida: <strong id="monthlyComidaText" class="text-green">$0.00</strong> (<span id="monthlyComidaPct">0%</span>)</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 4px; text-align: right;">
+            <span>General: <strong id="monthlyGeneralText" class="text-muted">$0.00</strong> (<span id="monthlyGeneralPct">0%</span>)</span>
+            <span style="width: 6px; height: 6px; background: var(--text-muted); border-radius: 50%; display: inline-block;"></span>
+          </div>
+        </div>
+      </div>
+
       <!-- Lista de Días -->
       <div id="daysList" class="days-stack">
         <!-- Generado dinámicamente -->
@@ -977,46 +1002,18 @@
 
     <!-- PESTAÑA: AJUSTES -->
     <section id="section-ajustes" class="section">
-      <h2 style="font-size: 20px; font-weight: 800;">Configuración</h2>
+      <h2 style="font-size: 20px; font-weight: 800;">Preferencias</h2>
       
-      <!-- Configurar Sincronización -->
+      <!-- Presupuesto Diario -->
       <div class="settings-card">
         <div class="settings-title">
-          <svg style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z" /></svg>
-          Sincronización en la Nube
+          <svg style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+          Presupuesto Diario
         </div>
-        
         <div class="form-group">
-          <label for="appsScriptUrl">URL de Google Apps Script</label>
-          <input type="text" id="appsScriptUrl" class="form-input" placeholder="https://script.google.com/macros/s/.../exec" />
+          <label for="presupuestoDiarioInput">Límite diario de gasto ($)</label>
+          <input type="number" id="presupuestoDiarioInput" class="form-input" placeholder="Ej. 170" onchange="cambiarPresupuestoDiarioLocal(this.value)" />
         </div>
-
-        <button class="btn btn-primary" onclick="guardarConfiguracion()">Guardar y Sincronizar</button>
-      </div>
-
-      <!-- Configuración del Presupuesto -->
-      <div class="settings-card">
-        <div class="settings-title">
-          <svg style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" /></svg>
-          Parámetros de Cálculo
-        </div>
-
-        <div class="form-group">
-          <label for="fechaInicioCalculo">Fecha de Inicio del Presupuesto</label>
-          <input type="date" id="fechaInicioCalculo" class="form-input" />
-        </div>
-        
-        <div class="form-group">
-          <label for="presupuestoDiario">Presupuesto Diario Base ($)</label>
-          <input type="number" id="presupuestoDiario" class="form-input" value="170" />
-        </div>
-
-        <div class="form-group">
-          <label for="saldoInicial">Saldo Inicial de Acumulación ($)</label>
-          <input type="number" id="saldoInicial" class="form-input" value="0" />
-        </div>
-
-        <button class="btn btn-primary" onclick="guardarParametrosPresupuesto()">Guardar Parámetros</button>
       </div>
 
       <!-- Tema y Datos Locales -->
@@ -1108,35 +1105,70 @@
 
   <!-- SCRIPT DE LOGICA Y APLICACION -->
   <script>
-    // ESTADO GLOBAL DE LA APLICACIÓN
+    // CONFIGURACIÓN GLOBAL DE LA APLICACIÓN (EDITABLE DESDE CÓDIGO)
+    const CONFIG = {
+      apiUrl: "https://script.google.com/macros/s/AKfycbxXkChXZT8zWpCAjCCUJkkqztQ2cNY493I1syHVnzsUhFZAaoxan6m7fsvjeJ5UoDY3/exec",
+      token: "danielgastos2026",
+      fechaInicio: "2026-07-01",      // Fecha de partida para arrastrar el presupuesto
+      presupuestoDiario: 170,         // Presupuesto diario base en pesos
+      saldoInicial: 0                 // Ahorro/Déficit inicial con el que arrancas en la Fecha de Inicio
+    };
+
+    function obtenerPresupuestoDiario() {
+      return parseFloat(localStorage.getItem("config_presupuesto_diario")) || CONFIG.presupuestoDiario;
+    }
+
+    function cambiarPresupuestoDiarioLocal(val) {
+      const parsed = parseFloat(val);
+      if (isNaN(parsed) || parsed <= 0) {
+        mostrarNotificacion("Presupuesto diario inválido.", "error");
+        return;
+      }
+      localStorage.setItem("config_presupuesto_diario", parsed.toString());
+      actualizarTablero();
+      mostrarNotificacion("Presupuesto diario actualizado", "success");
+    }
+
     let state = {
       gastos: [],             // Lista de todos los gastos locales cargados
       semanaActiva: new Date(),// Fecha representativa de la semana activa en el tablero (hoy)
       online: navigator.onLine,
-      sincronizando: false,
-      
-      // Ajustes editables
-      config: {
-        apiUrl: localStorage.getItem("config_api_url") || "",
-        token: "danielgastos2026",
-        fechaInicio: localStorage.getItem("config_fecha_inicio") || todayISO(),
-        presupuestoDiario: parseFloat(localStorage.getItem("config_presupuesto_diario") || "170"),
-        saldoInicial: parseFloat(localStorage.getItem("config_saldo_inicial") || "0")
-      }
+      sincronizando: false
     };
 
     // INICIALIZACIÓN
     window.addEventListener("DOMContentLoaded", () => {
-      // Cargar configuración guardada
-      document.getElementById("appsScriptUrl").value = state.config.apiUrl;
-      document.getElementById("fechaInicioCalculo").value = state.config.fechaInicio;
-      document.getElementById("presupuestoDiario").value = state.config.presupuestoDiario;
-      document.getElementById("saldoInicial").value = state.config.saldoInicial;
-      
       // Aplicar tema guardado
       const savedTheme = localStorage.getItem("theme") || "dark";
       document.body.setAttribute("data-theme", savedTheme);
       document.getElementById("themeCheckbox").checked = (savedTheme === "light");
+
+      // Cargar presupuesto personalizado si existe
+      document.getElementById("presupuestoDiarioInput").value = obtenerPresupuestoDiario();
+
+      // Escuchador para clasificar automáticamente según el concepto escrito
+      document.getElementById("gastoConcepto").addEventListener("input", (e) => {
+        const text = e.target.value.toLowerCase().trim();
+        const comidaKeywords = [
+          "comida", "cena", "desayuno", "tacos", "pizza", "restaurante", "verduleria", "verdulería",
+          "super", "súper", "walmart", "soriana", "oxxo", "carne", "pollo", "verdura", "fruta", "abarrotes",
+          "tienda", "tiendita", "cocina", "leche", "pan", "tortillas", "pescado"
+        ];
+        const generalKeywords = [
+          "gasolina", "gas", "renta", "luz", "agua", "internet", "moto", "coche", "uber", "didi",
+          "netflix", "spotify", "ropa", "tenis", "salud", "doctor", "farmacia", "medicina", "seguro"
+        ];
+
+        const esComida = comidaKeywords.some(keyword => text.includes(keyword));
+        const esGeneral = generalKeywords.some(keyword => text.includes(keyword));
+
+        const categoriaSelect = document.getElementById("gastoCategoria");
+        if (esComida && !esGeneral) {
+          categoriaSelect.value = "Comida";
+        } else if (esGeneral && !esComida) {
+          categoriaSelect.value = "General";
+        }
+      });
 
       // Cargar datos almacenados en localStorage temporalmente
       const localData = localStorage.getItem("db_gastos");
@@ -1149,10 +1181,8 @@
       // Renderizar tablero
       actualizarTablero();
 
-      // Sincronizar datos si hay URL configurada
-      if (state.config.apiUrl) {
-        sincronizarDatos();
-      }
+      // Sincronizar datos de inmediato
+      sincronizarDatos();
     });
 
     window.addEventListener("online", () => actualizarConexionBadge());
@@ -1169,7 +1199,7 @@
       } else if (!state.online) {
         dot.className = "status-dot";
         text.textContent = "Sin conexión";
-      } else if (state.config.apiUrl) {
+      } else if (CONFIG.apiUrl) {
         dot.className = "status-dot online";
         text.textContent = "Sincronizado";
       } else {
@@ -1227,7 +1257,7 @@
     // Calcula el presupuesto disponible, gastado, ajuste y acumulado día por día desde la fecha de inicio configurada
     function calcularPresupuestoAcumulado(hastaFecha) {
       // 1. Obtener la fecha de inicio
-      let d = new Date(state.config.fechaInicio + "T00:00:00");
+      let d = new Date(CONFIG.fechaInicio + "T00:00:00");
       if (isNaN(d.getTime())) {
         d = obtenerLunes(new Date());
       }
@@ -1243,13 +1273,13 @@
       });
 
       const calculos = {};
-      let rolloverBalance = state.config.saldoInicial; // Ahorro/Déficit arrastrado del día anterior
+      let rolloverBalance = CONFIG.saldoInicial; // Ahorro/Déficit arrastrado del día anterior
 
       // Bucle secuencial día por día
       while (d <= limiteFecha) {
         const dateStr = formatISO(d);
         
-        const base = state.config.presupuestoDiario;
+        const base = obtenerPresupuestoDiario();
         const disponible = base + rolloverBalance;
         const gastado = gastosPorFecha[dateStr] || 0;
         const restante = disponible - gastado;
@@ -1307,11 +1337,11 @@
 
         // Obtener datos calculados para este día. Si la fecha es anterior a la fecha de inicio de presupuestos, usar valores por defecto.
         const diaCalc = calculosPresupuesto[diaStr] || {
-          base: state.config.presupuestoDiario,
+          base: obtenerPresupuestoDiario(),
           rollover: 0,
-          disponible: state.config.presupuestoDiario,
+          disponible: obtenerPresupuestoDiario(),
           gastado: 0,
-          restante: state.config.presupuestoDiario
+          restante: obtenerPresupuestoDiario()
         };
 
         totalDisponibleSemanal += diaCalc.base;
@@ -1395,7 +1425,7 @@
 
           <div class="day-actions">
             <button class="btn btn-quick-170" onclick="registrarComidaRapida('${diaStr}')">
-              ⚡ +$${state.config.presupuestoDiario.toFixed(0)} Comida
+              ⚡ +$${obtenerPresupuestoDiario().toFixed(0)} Comida
             </button>
             <button class="btn btn-custom-expense" onclick="abrirModalGasto('${diaStr}')">
               ➕ Gasto
@@ -1422,6 +1452,55 @@
 
       // Renderizar el historial global y filtros
       renderHistorialGlobal();
+      
+      // Actualizar el KPI Mensual
+      actualizarKpiMensual();
+    }
+
+    // ACTUALIZAR DISTRIBUCIÓN MENSUAL VISUAL (KPI MENSUAL)
+    function actualizarKpiMensual() {
+      const fechaBase = state.semanaActiva;
+      const anio = fechaBase.getFullYear();
+      const mesIndex = fechaBase.getMonth(); // 0-11
+      const nombresMeses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+      
+      document.getElementById("currentMonthName").textContent = nombresMeses[mesIndex];
+
+      // Filtrar gastos del mes correspondiente a la semana activa (formato YYYY-MM)
+      const prefijoMes = `${anio}-${String(mesIndex + 1).padStart(2, "0")}`;
+      const gastosMes = state.gastos.filter(g => g.fecha.startsWith(prefijoMes));
+
+      let totalComida = 0;
+      let totalGeneral = 0;
+
+      gastosMes.forEach(g => {
+        const monto = parseFloat(g.monto) || 0;
+        if (g.categoria === "Comida") {
+          totalComida += monto;
+        } else {
+          totalGeneral += monto;
+        }
+      });
+
+      const totalMes = totalComida + totalGeneral;
+      
+      document.getElementById("monthlyTotalSpent").textContent = formatearDinero(totalMes);
+      document.getElementById("monthlyComidaText").textContent = formatearDinero(totalComida);
+      document.getElementById("monthlyGeneralText").textContent = formatearDinero(totalGeneral);
+
+      let pctComida = 0;
+      let pctGeneral = 0;
+
+      if (totalMes > 0) {
+        pctComida = Math.round((totalComida / totalMes) * 100);
+        pctGeneral = 100 - pctComida; // Asegurar suma del 100%
+      }
+
+      document.getElementById("monthlyComidaPct").textContent = `${pctComida}%`;
+      document.getElementById("monthlyGeneralPct").textContent = `${pctGeneral}%`;
+
+      document.getElementById("monthlyComidaBar").style.width = `${pctComida}%`;
+      document.getElementById("monthlyGeneralBar").style.width = `${pctGeneral}%`;
     }
 
     // RENDERIZAR HISTORIAL COMPLETO
@@ -1469,6 +1548,7 @@
       });
     }
 
+    // ACCIONES DE BÚSQUEDA Y FILTRO
     function filtrarHistorial() {
       const val = document.getElementById("searchInput").value;
       renderHistorialGlobal(val);
@@ -1481,7 +1561,6 @@
 
       document.getElementById(`section-${nombre}`).classList.add("active");
       
-      // Encontrar pestaña activa correspondiente
       const indexTabMap = { 'tablero': 0, 'historial': 1, 'ajustes': 2 };
       document.querySelectorAll(".nav-tab")[indexTabMap[nombre]].classList.add("active");
     }
@@ -1491,7 +1570,7 @@
         id: 'g_' + Date.now() + '_' + Math.floor(Math.random() * 100),
         fecha: fechaStr,
         concepto: "Comida Diaria",
-        monto: state.config.presupuestoDiario,
+        monto: obtenerPresupuestoDiario(),
         categoria: "Comida",
         fechaRegistro: new Date().toISOString()
       };
@@ -1511,6 +1590,7 @@
       document.getElementById("modalGasto").style.display = "flex";
     }
 
+    // MODAL HANDLERS
     function cerrarModalGasto() {
       document.getElementById("modalGasto").style.display = "none";
     }
@@ -1566,8 +1646,8 @@
       actualizarTablero();
       mostrarNotificacion("Gasto registrado localmente", "success");
 
-      // 2. Si hay API de Apps Script configurada, enviarlo al servidor
-      if (state.config.apiUrl && state.online) {
+      // 2. Si hay API configurada y online, enviarlo al servidor
+      if (CONFIG.apiUrl && state.online) {
         try {
           actualizarSincronizacion(true);
           const response = await peticionApi("addGasto", {
@@ -1602,7 +1682,7 @@
       mostrarNotificacion("Gasto eliminado localmente", "success");
 
       // 2. Sincronizar eliminación con Apps Script
-      if (state.config.apiUrl && state.online) {
+      if (CONFIG.apiUrl && state.online) {
         try {
           actualizarSincronizacion(true);
           const response = await peticionApi("deleteGasto", { id });
@@ -1627,16 +1707,14 @@
       actualizarConexionBadge();
     }
 
-    // COMUNICACIÓN CON GOOGLE APPS SCRIPT (SOPORTE JSONP Y FETCH)
+    // COMUNICACIÓN CON GOOGLE APPS SCRIPT (SOPORTE JSONP)
     function peticionApi(action, params = {}) {
-      const url = state.config.apiUrl;
-      const token = state.config.token;
+      const url = CONFIG.apiUrl;
+      const token = CONFIG.token;
 
-      // Usamos JSONP para evitar bloqueos de CORS del navegador con Google Apps Script
       return new Promise((resolve, reject) => {
         const callbackName = "jsonp_cb_" + Math.floor(Math.random() * 1000000);
         
-        // Construir URL con parámetros
         const queryParams = new URLSearchParams({
           action,
           token,
@@ -1647,7 +1725,6 @@
         const script = document.createElement("script");
         script.src = `${url}?${queryParams.toString()}`;
 
-        // Timeout por si falla
         const timer = setTimeout(() => {
           limpiar();
           reject(new Error("Tiempo de espera agotado"));
@@ -1675,8 +1752,8 @@
 
     // SINCRONIZACIÓN COMPLETA (BAJADA DESDE CLOUD)
     async function sincronizarDatos() {
-      if (!state.config.apiUrl) {
-        mostrarNotificacion("Configura la URL de Apps Script en Ajustes para activar la nube.", "error");
+      if (!CONFIG.apiUrl) {
+        mostrarNotificacion("API de Apps Script no configurada en el código.", "error");
         return;
       }
 
@@ -1691,24 +1768,8 @@
         
         const response = await peticionApi("getGastos");
         if (response && response.ok) {
-          // 1. Reemplazar base de datos local de gastos con la remota
+          // Reemplazar base de datos local de gastos con la remota
           state.gastos = response.data.gastos || [];
-          
-          // 2. Sincronizar parámetros de configuración desde el servidor
-          if (response.data.config) {
-            state.config.fechaInicio = response.data.config.fechaInicio;
-            state.config.presupuestoDiario = response.data.config.presupuestoDiario;
-            state.config.saldoInicial = response.data.config.saldoInicial;
-            
-            localStorage.setItem("config_fecha_inicio", state.config.fechaInicio);
-            localStorage.setItem("config_presupuesto_diario", state.config.presupuestoDiario.toString());
-            localStorage.setItem("config_saldo_inicial", state.config.saldoInicial.toString());
-            
-            document.getElementById("fechaInicioCalculo").value = state.config.fechaInicio;
-            document.getElementById("presupuestoDiario").value = state.config.presupuestoDiario;
-            document.getElementById("saldoInicial").value = state.config.saldoInicial;
-          }
-
           guardarDatosLocales();
           actualizarTablero();
           mostrarNotificacion("Sincronización completa", "success");
@@ -1721,59 +1782,6 @@
       } finally {
         actualizarSincronizacion(false);
       }
-    }
-
-    // AJUSTES Y CONFIGURACIÓN
-    function guardarConfiguracion() {
-      const urlInput = document.getElementById("appsScriptUrl").value.trim();
-      state.config.apiUrl = urlInput;
-      localStorage.setItem("config_api_url", urlInput);
-      
-      mostrarNotificacion("Configuración de API guardada", "success");
-      sincronizarDatos();
-    }
-
-    async function guardarParametrosPresupuesto() {
-      const fecha = document.getElementById("fechaInicioCalculo").value;
-      const presupuesto = parseFloat(document.getElementById("presupuestoDiario").value);
-      const saldoIni = parseFloat(document.getElementById("saldoInicial").value) || 0;
-
-      if (!fecha || isNaN(presupuesto) || presupuesto <= 0 || isNaN(saldoIni)) {
-        mostrarNotificacion("Parámetros inválidos", "error");
-        return;
-      }
-
-      state.config.fechaInicio = fecha;
-      state.config.presupuestoDiario = presupuesto;
-      state.config.saldoInicial = saldoIni;
-
-      localStorage.setItem("config_fecha_inicio", fecha);
-      localStorage.setItem("config_presupuesto_diario", presupuesto.toString());
-      localStorage.setItem("config_saldo_inicial", saldoIni.toString());
-
-      mostrarNotificacion("Parámetros actualizados en local", "success");
-
-      // Si hay API configurada y online, sincronizar los parámetros con Sheets
-      if (state.config.apiUrl && state.online) {
-        try {
-          actualizarSincronizacion(true);
-          const response = await peticionApi("updateConfig", {
-            fechaInicio: fecha,
-            presupuestoDiario: presupuesto,
-            saldoInicial: saldoIni
-          });
-          if (response && response.ok) {
-            mostrarNotificacion("Configuración guardada en la nube", "success");
-          }
-        } catch (err) {
-          console.error(err);
-          mostrarNotificacion("Guardado local, falló sincronización en la nube", "error");
-        } finally {
-          actualizarSincronizacion(false);
-        }
-      }
-
-      actualizarTablero();
     }
 
     // TEMA CLARO Y OSCURO
