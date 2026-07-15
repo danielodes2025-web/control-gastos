@@ -1725,47 +1725,23 @@
       actualizarConexionBadge();
     }
 
-    // COMUNICACIÓN CON GOOGLE APPS SCRIPT (SOPORTE JSONP)
-    function peticionApi(action, params = {}) {
+    // COMUNICACIÓN CON GOOGLE APPS SCRIPT (CORS FETCH)
+    async function peticionApi(action, params = {}) {
       const url = CONFIG.apiUrl;
       const token = CONFIG.token;
 
-      return new Promise((resolve, reject) => {
-        const callbackName = "jsonp_cb_" + Math.floor(Math.random() * 1000000);
-        
-        const queryParams = new URLSearchParams({
-          action,
-          token,
-          callback: callbackName,
-          ...params
-        });
-
-        const script = document.createElement("script");
-        script.src = `${url}?${queryParams.toString()}`;
-
-        const timer = setTimeout(() => {
-          limpiar();
-          reject(new Error("Tiempo de espera agotado"));
-        }, 15000);
-
-        window[callbackName] = function(res) {
-          limpiar();
-          resolve(res);
-        };
-
-        script.onerror = function() {
-          limpiar();
-          reject(new Error("Error de red"));
-        };
-
-        function limpiar() {
-          clearTimeout(timer);
-          delete window[callbackName];
-          if (script.parentNode) script.parentNode.removeChild(script);
-        }
-
-        document.body.appendChild(script);
+      const queryParams = new URLSearchParams({
+        action,
+        token,
+        ...params
       });
+
+      // fetch estándar con soporte CORS y redirección automática de Google
+      const response = await fetch(`${url}?${queryParams.toString()}`);
+      if (!response.ok) {
+        throw new Error("Error de red");
+      }
+      return await response.json();
     }
 
     // SINCRONIZACIÓN COMPLETA (BAJADA DESDE CLOUD)
