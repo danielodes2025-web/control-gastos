@@ -1134,11 +1134,10 @@
         const esComida = comidaKeywords.some(keyword => text.includes(keyword));
         const esGeneral = generalKeywords.some(keyword => text.includes(keyword));
 
-        const categoriaSelect = document.getElementById("gastoCategoria");
         if (esComida && !esGeneral) {
-          categoriaSelect.value = "Comida";
+          seleccionarCategoriaSegmento("Comida", false);
         } else if (esGeneral && !esComida) {
-          categoriaSelect.value = "General";
+          seleccionarCategoriaSegmento("General", false);
         }
       });
 
@@ -1596,7 +1595,7 @@
     }
 
     // MANEJADOR DE CONTROL SEGMENTADO ESTILO iOS NATIVO
-    function seleccionarCategoriaSegmento(categoria) {
+    function seleccionarCategoriaSegmento(categoria, limpiarConcepto = true) {
       document.getElementById("gastoCategoria").value = categoria;
       
       const btnComida = document.getElementById("seg-comida");
@@ -1610,7 +1609,9 @@
         btnGeneral.classList.add("active");
       }
       
-      actualizarConceptoDefault();
+      if (limpiarConcepto) {
+        actualizarConceptoDefault();
+      }
     }
 
     function cerrarModalGasto() {
