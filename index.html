@@ -11,60 +11,60 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    /* VARIABLES DE DISEÑO (TEMA OSCURO POR DEFECTO / TEMA CLARO ADAPTABLE) */
+    /* VARIABLES DE DISEÑO (ESTILO iOS CUPERTINO NATIVO) */
     :root {
-      --bg-gradient: linear-gradient(135deg, #0b0f19, #1e2640);
-      --card-bg: rgba(22, 30, 54, 0.7);
-      --card-border: rgba(255, 255, 255, 0.07);
-      --text-primary: #f8fafc;
-      --text-muted: #94a3b8;
-      --border-color: rgba(255, 255, 255, 0.05);
+      --bg-gradient: linear-gradient(180deg, #000000 0%, #121214 100%);
+      --card-bg: #1c1c1e; /* iOS Dark System Gray 2 */
+      --card-border: rgba(255, 255, 255, 0.05);
+      --text-primary: #ffffff;
+      --text-muted: #8e8e93; /* iOS Dark Gray */
+      --border-color: rgba(255, 255, 255, 0.08);
       
-      --accent-blue: #38bdf8;
-      --accent-blue-hover: #0ea5e9;
-      --accent-green: #4ade80;
-      --accent-green-bg: rgba(74, 222, 128, 0.15);
-      --accent-green-text: #4ade80;
+      --accent-blue: #0a84ff; /* iOS Dark System Blue */
+      --accent-blue-hover: #007aff;
+      --accent-green: #30d158; /* iOS Dark System Green */
+      --accent-green-bg: rgba(48, 209, 88, 0.15);
+      --accent-green-text: #30d158;
       
-      --accent-yellow: #fbbf24;
-      --accent-yellow-bg: rgba(251, 191, 36, 0.15);
+      --accent-yellow: #ffd60a; /* iOS Dark System Yellow */
+      --accent-yellow-bg: rgba(255, 214, 10, 0.15);
       
-      --accent-red: #f87171;
-      --accent-red-bg: rgba(248, 113, 113, 0.15);
-      --accent-red-text: #f87171;
+      --accent-red: #ff453a; /* iOS Dark System Red */
+      --accent-red-bg: rgba(255, 69, 58, 0.15);
+      --accent-red-text: #ff453a;
       
-      --nav-bg: rgba(15, 22, 42, 0.9);
-      --nav-border: rgba(255, 255, 255, 0.05);
-      --shadow-premium: 0 12px 30px rgba(0, 0, 0, 0.4);
-      --radius: 20px;
+      --nav-bg: rgba(28, 28, 30, 0.94); /* iOS Dark Translucent Tab Bar */
+      --nav-border: rgba(255, 255, 255, 0.1);
+      --shadow-premium: 0 4px 20px rgba(0, 0, 0, 0.5);
+      --radius: 12px; /* iOS Standard Card Radius */
       
-      --font: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
 
     [data-theme="light"] {
-      --bg-gradient: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-      --card-bg: rgba(255, 255, 255, 0.85);
-      --card-border: rgba(0, 0, 0, 0.06);
-      --text-primary: #0f172a;
-      --text-muted: #64748b;
-      --border-color: rgba(0, 0, 0, 0.05);
+      --bg-gradient: linear-gradient(180deg, #f2f2f7 0%, #e5e5ea 100%); /* iOS Light System Gray 6 */
+      --card-bg: #ffffff; /* iOS Light Card Background */
+      --card-border: rgba(0, 0, 0, 0.03);
+      --text-primary: #000000;
+      --text-muted: #8e8e93; /* iOS Light Gray */
+      --border-color: rgba(0, 0, 0, 0.08);
       
-      --accent-blue: #0284c7;
-      --accent-blue-hover: #0369a1;
-      --accent-green: #16a34a;
-      --accent-green-bg: #dcfce7;
-      --accent-green-text: #15803d;
+      --accent-blue: #007aff; /* iOS Light System Blue */
+      --accent-blue-hover: #0056b3;
+      --accent-green: #34c759; /* iOS Light System Green */
+      --accent-green-bg: #e2fbe8;
+      --accent-green-text: #248a3d;
       
-      --accent-yellow: #d97706;
-      --accent-yellow-bg: #fef3c7;
+      --accent-yellow: #ffcc00; /* iOS Light System Yellow */
+      --accent-yellow-bg: #fff9db;
       
-      --accent-red: #dc2626;
-      --accent-red-bg: #fee2e2;
-      --accent-red-text: #b91c1c;
+      --accent-red: #ff3b30; /* iOS Light System Red */
+      --accent-red-bg: #ffebeb;
+      --accent-red-text: #c61a09;
       
-      --nav-bg: rgba(255, 255, 255, 0.95);
-      --nav-border: rgba(0, 0, 0, 0.05);
-      --shadow-premium: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --nav-bg: rgba(249, 249, 249, 0.94); /* iOS Light Translucent Tab Bar */
+      --nav-border: rgba(0, 0, 0, 0.1);
+      --shadow-premium: 0 4px 16px rgba(0, 0, 0, 0.06);
     }
 
     * {
@@ -82,37 +82,36 @@
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      padding-bottom: 96px; /* Espacio para barra de navegación */
+      padding-bottom: calc(80px + env(safe-area-inset-bottom, 16px));
     }
 
-    /* CONTENEDOR PRINCIPAL - ENFOQUE MÓVIL ESTRICTO */
+    /* CONTENEDOR PRINCIPAL - ENFOQUE MÓVIL ESTRICTO iOS */
     .app-container {
       width: 100%;
       max-width: 480px;
-      padding: 20px 16px;
+      padding: 16px 16px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 16px;
     }
 
-    /* ENCABEZADO */
+    /* ENCABEZADO iOS NATIVO */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-top: 10px;
+      padding: 0 4px;
     }
 
     header h1 {
-      font-size: 22px;
+      font-size: 28px;
       font-weight: 800;
-      letter-spacing: -0.5px;
-      background: linear-gradient(90deg, #38bdf8, #818cf8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.8px;
+      color: var(--text-primary);
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
     /* BOTÓN SINCRONIZAR Y RED DE ESTADO */
@@ -120,20 +119,18 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
+      background: rgba(118, 118, 128, 0.15);
       padding: 6px 12px;
       border-radius: 999px;
       font-size: 12px;
-      font-weight: 700;
-      color: var(--text-primary);
+      font-weight: 600;
+      color: var(--accent-blue);
       cursor: pointer;
-      box-shadow: var(--shadow-premium);
-      transition: all 0.2s ease;
+      transition: opacity 0.15s ease;
     }
 
     .sync-status-badge:active {
-      transform: scale(0.95);
+      opacity: 0.6;
     }
 
     .status-dot {
@@ -155,54 +152,62 @@
       100% { opacity: 1; }
     }
 
+    /* BOTÓN HEADER AGREGAR GASTO */
+    .header-action-btn {
+      background: transparent;
+      border: none;
+      color: var(--accent-blue);
+      cursor: pointer;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.15s ease;
+    }
+    .header-action-btn:active {
+      opacity: 0.4;
+    }
+
     /* NAVEGADOR DE SEMANA */
     .week-navigator {
       display: flex;
       justify-content: space-between;
       align-items: center;
       background: var(--card-bg);
-      border: 1px solid var(--card-border);
+      border: 0.5px solid var(--card-border);
       border-radius: var(--radius);
-      padding: 14px;
+      padding: 12px 14px;
       box-shadow: var(--shadow-premium);
-      backdrop-filter: blur(10px);
     }
 
     .nav-btn {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: var(--text-primary);
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
+      background: transparent;
+      border: none;
+      color: var(--accent-blue);
+      width: 32px;
+      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    [data-theme="light"] .nav-btn {
-      background: rgba(0, 0, 0, 0.04);
-      border: 1px solid rgba(0, 0, 0, 0.06);
+      transition: opacity 0.15s ease;
     }
 
     .nav-btn:active {
-      transform: scale(0.9);
-      background: rgba(255, 255, 255, 0.1);
+      opacity: 0.4;
     }
 
     .week-label {
       text-align: center;
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 1px;
     }
 
     .week-title {
-      font-size: 16px;
-      font-weight: 800;
-      letter-spacing: -0.3px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
     }
 
     .week-subtitle {
@@ -212,42 +217,39 @@
 
     /* TARJETA RESUMEN DE LA SEMANA */
     .summary-card {
-      background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(99, 102, 241, 0.05));
-      border: 1px solid rgba(56, 189, 248, 0.2);
+      background: var(--card-bg);
+      border: 0.5px solid var(--card-border);
       border-radius: var(--radius);
-      padding: 18px;
+      padding: 16px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-      position: relative;
-      overflow: hidden;
       box-shadow: var(--shadow-premium);
-      backdrop-filter: blur(10px);
     }
 
     .summary-item {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 2px;
     }
 
     .summary-item span {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--text-muted);
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
     }
 
     .summary-item strong {
-      font-size: 24px;
-      font-weight: 900;
-      letter-spacing: -0.5px;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
     }
 
     .summary-full {
       grid-column: span 2;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 0.5px solid var(--border-color);
       padding-top: 10px;
       margin-top: 4px;
       display: flex;
@@ -255,17 +257,14 @@
       align-items: center;
     }
 
-    [data-theme="light"] .summary-full {
-      border-top: 1px solid rgba(0, 0, 0, 0.08);
-    }
-
     .summary-full span {
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 600;
     }
 
     .summary-full strong {
-      font-size: 18px;
+      font-size: 17px;
+      font-weight: 700;
     }
 
     .text-green { color: var(--accent-green-text); }
@@ -275,16 +274,16 @@
     .section {
       display: none;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
     }
 
     .section.active {
       display: flex;
-      animation: fadeIn 0.3s ease-out;
+      animation: fadeIn 0.2s ease-out;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
+      from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
@@ -292,25 +291,22 @@
     .days-stack {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
 
     .day-card {
       background: var(--card-bg);
-      border: 1px solid var(--card-border);
+      border: 0.5px solid var(--card-border);
       border-radius: var(--radius);
-      padding: 16px;
+      padding: 14px 16px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
       box-shadow: var(--shadow-premium);
-      backdrop-filter: blur(10px);
-      transition: border-color 0.3s ease;
     }
 
     .day-card.today {
-      border-color: rgba(56, 189, 248, 0.4);
-      background: linear-gradient(180deg, var(--card-bg) 0%, rgba(56, 189, 248, 0.03) 100%);
+      border-color: rgba(10, 132, 255, 0.4);
     }
 
     .day-header {
@@ -325,8 +321,8 @@
     }
 
     .day-title-text {
-      font-size: 17px;
-      font-weight: 800;
+      font-size: 16px;
+      font-weight: 700;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -334,18 +330,14 @@
 
     .today-badge {
       background: var(--accent-blue);
-      color: #0b0f19;
+      color: #ffffff;
       font-size: 9px;
-      font-weight: 900;
-      padding: 2px 6px;
-      border-radius: 99px;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 4px;
       text-transform: uppercase;
     }
     
-    [data-theme="light"] .today-badge {
-      color: #ffffff;
-    }
-
     .day-date-text {
       font-size: 12px;
       color: var(--text-muted);
@@ -354,9 +346,9 @@
     /* DISPONIBLE / SOBRANTE BADGES */
     .day-status-pill {
       font-size: 12px;
-      font-weight: 800;
-      padding: 4px 10px;
-      border-radius: 99px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
     }
 
     .day-status-pill.success {
@@ -373,23 +365,17 @@
     .day-budget-details {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      background: rgba(0, 0, 0, 0.15);
-      border-radius: 12px;
-      padding: 8px;
+      background: rgba(118, 118, 128, 0.08);
+      border-radius: 8px;
+      padding: 6px;
       font-size: 11px;
       text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.03);
-    }
-
-    [data-theme="light"] .day-budget-details {
-      background: rgba(0, 0, 0, 0.03);
-      border: 1px solid rgba(0, 0, 0, 0.02);
     }
 
     .budget-subitem {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 1px;
     }
 
     .budget-subitem span {
@@ -398,7 +384,7 @@
     }
 
     .budget-subitem strong {
-      font-weight: 700;
+      font-weight: 600;
       color: var(--text-primary);
     }
 
@@ -407,56 +393,44 @@
       display: grid;
       grid-template-columns: 1.2fr 1fr;
       gap: 8px;
-      margin-top: 2px;
+      margin-top: 1px;
     }
 
     .btn {
       border: none;
-      border-radius: 12px;
+      border-radius: 8px;
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      transition: all 0.15s ease;
-      height: 38px;
+      gap: 4px;
+      transition: opacity 0.15s ease;
+      height: 34px;
     }
 
     .btn:active {
-      transform: scale(0.97);
+      opacity: 0.6;
     }
 
     .btn-quick-170 {
       background: var(--accent-green-bg);
       color: var(--accent-green-text);
-      border: 1px solid rgba(74, 222, 128, 0.2);
-    }
-
-    .btn-quick-170:active {
-      background: var(--accent-green);
-      color: #000;
     }
 
     .btn-custom-expense {
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-primary);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    [data-theme="light"] .btn-custom-expense {
-      background: rgba(0, 0, 0, 0.03);
-      border: 1px solid rgba(0, 0, 0, 0.06);
+      background: rgba(118, 118, 128, 0.15);
+      color: var(--accent-blue);
     }
 
     /* HISTORIAL DE GASTOS DEL DIA */
     .day-expenses-list {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      border-top: 1px dashed var(--border-color);
-      padding-top: 10px;
+      gap: 1px;
+      border-top: 0.5px solid var(--border-color);
+      padding-top: 8px;
     }
 
     .expense-row {
@@ -464,13 +438,12 @@
       justify-content: space-between;
       align-items: center;
       font-size: 13px;
-      background: rgba(255, 255, 255, 0.02);
-      padding: 6px 8px;
-      border-radius: 8px;
+      padding: 6px 4px;
+      border-bottom: 0.5px solid rgba(84, 84, 88, 0.1);
     }
-
-    [data-theme="light"] .expense-row {
-      background: rgba(0, 0, 0, 0.01);
+    
+    .expense-row:last-child {
+      border-bottom: none;
     }
 
     .expense-info {
@@ -483,22 +456,22 @@
       font-size: 9px;
       padding: 2px 5px;
       border-radius: 4px;
-      font-weight: 800;
+      font-weight: 700;
       text-transform: uppercase;
     }
 
     .expense-cat-tag.comida {
-      background: rgba(56, 189, 248, 0.15);
-      color: #38bdf8;
+      background: rgba(10, 132, 255, 0.12);
+      color: var(--accent-blue);
     }
     
     .expense-cat-tag.general {
-      background: rgba(148, 163, 184, 0.15);
-      color: #94a3b8;
+      background: rgba(142, 142, 147, 0.15);
+      color: var(--text-muted);
     }
 
     .expense-concept {
-      font-weight: 600;
+      font-weight: 500;
     }
 
     .expense-right {
@@ -508,7 +481,7 @@
     }
 
     .expense-amount {
-      font-weight: 800;
+      font-weight: 600;
     }
 
     .expense-delete-btn {
@@ -520,45 +493,74 @@
       align-items: center;
       justify-content: center;
       padding: 4px;
-      opacity: 0.6;
-      transition: opacity 0.2s;
+      transition: opacity 0.15s;
     }
 
     .expense-delete-btn:active {
-      opacity: 1;
-      transform: scale(0.9);
+      opacity: 0.4;
+    }
+
+    /* CONTROLES SEGMENTADOS ESTILO iOS NATIVO */
+    .ios-segmented-control {
+      display: flex;
+      background: rgba(118, 118, 128, 0.12);
+      border-radius: 8px;
+      padding: 2px;
+      border: none;
+      width: 100%;
+    }
+
+    .segment-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      color: var(--text-primary);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 0;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: center;
+    }
+
+    .segment-btn.active {
+      background: #636366; /* iOS Dark Selected Segment */
+      color: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    [data-theme="light"] .segment-btn.active {
+      background: #ffffff; /* iOS Light Selected Segment */
+      color: #000000;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
     }
 
     /* HISTORIAL GLOBAL */
     .history-card {
       background: var(--card-bg);
-      border: 1px solid var(--card-border);
+      border: 0.5px solid var(--card-border);
       border-radius: var(--radius);
-      padding: 16px;
+      padding: 14px;
       box-shadow: var(--shadow-premium);
-      backdrop-filter: blur(10px);
     }
 
     .search-box {
       width: 100%;
-      background: rgba(0, 0, 0, 0.2);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 12px 14px;
+      background: rgba(118, 118, 128, 0.12);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 12px;
       color: var(--text-primary);
       font-size: 14px;
       outline: none;
-      margin-bottom: 12px;
-    }
-
-    [data-theme="light"] .search-box {
-      background: rgba(0, 0, 0, 0.03);
+      margin-bottom: 10px;
     }
 
     .global-history-list {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 1px;
       max-height: 480px;
       overflow-y: auto;
     }
@@ -567,25 +569,22 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 12px;
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.03);
+      padding: 10px 4px;
+      border-bottom: 0.5px solid rgba(84, 84, 88, 0.1);
     }
 
-    [data-theme="light"] .global-history-item {
-      background: rgba(0, 0, 0, 0.01);
-      border: 1px solid rgba(0, 0, 0, 0.02);
+    .global-history-item:last-child {
+      border-bottom: none;
     }
 
     .global-item-left {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 1px;
     }
 
     .global-item-title {
-      font-weight: 700;
+      font-weight: 600;
       font-size: 14px;
     }
 
@@ -597,20 +596,19 @@
     /* PESTAÑA AJUSTES */
     .settings-card {
       background: var(--card-bg);
-      border: 1px solid var(--card-border);
+      border: 0.5px solid var(--card-border);
       border-radius: var(--radius);
-      padding: 18px;
+      padding: 14px 16px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
       box-shadow: var(--shadow-premium);
-      backdrop-filter: blur(10px);
     }
 
     .settings-title {
-      font-size: 18px;
-      font-weight: 800;
-      margin-bottom: 4px;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 2px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -619,67 +617,59 @@
     .form-group {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 5px;
     }
 
     .form-group label {
-      font-size: 13px;
-      font-weight: 700;
+      font-size: 12px;
+      font-weight: 600;
       color: var(--text-muted);
     }
 
     .form-input {
       width: 100%;
-      background: rgba(0, 0, 0, 0.2);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 12px 14px;
+      background: rgba(118, 118, 128, 0.12);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 12px;
       color: var(--text-primary);
       font-size: 14px;
       outline: none;
     }
 
-    [data-theme="light"] .form-input {
-      background: rgba(0, 0, 0, 0.03);
-    }
-
     .form-input:focus {
-      border-color: var(--accent-blue);
+      background: rgba(118, 118, 128, 0.18);
     }
 
     .btn-primary {
       background: var(--accent-blue);
-      color: #0b0f19;
-      font-weight: 800;
-      border-radius: 12px;
+      color: #ffffff;
+      font-weight: 700;
+      border-radius: 8px;
       font-size: 14px;
-      height: 44px;
+      height: 40px;
       border: none;
       cursor: pointer;
-      transition: all 0.2s;
-    }
-    
-    [data-theme="light"] .btn-primary {
-      color: #ffffff;
+      transition: opacity 0.15s;
     }
 
     .btn-primary:active {
-      transform: scale(0.97);
+      opacity: 0.7;
     }
 
     .theme-toggle-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid var(--border-color);
-      padding-top: 14px;
-      margin-top: 4px;
+      border-top: 0.5px solid var(--border-color);
+      padding-top: 12px;
+      margin-top: 2px;
     }
 
     .toggle-switch {
       position: relative;
       display: inline-block;
-      width: 52px;
+      width: 50px;
       height: 28px;
     }
 
@@ -693,90 +683,87 @@
       position: absolute;
       cursor: pointer;
       top: 0; left: 0; right: 0; bottom: 0;
-      background-color: rgba(255, 255, 255, 0.1);
-      transition: .3s;
+      background-color: rgba(120, 120, 128, 0.16);
+      transition: .25s;
       border-radius: 34px;
-      border: 1px solid var(--card-border);
-    }
-
-    [data-theme="light"] .toggle-slider {
-      background-color: rgba(0, 0, 0, 0.05);
     }
 
     .toggle-slider:before {
       position: absolute;
       content: "";
-      height: 20px;
-      width: 20px;
-      left: 3px;
-      bottom: 3px;
+      height: 24px;
+      width: 24px;
+      left: 2px;
+      bottom: 2px;
       background-color: white;
-      transition: .3s;
+      transition: .25s;
       border-radius: 50%;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
     }
 
     input:checked + .toggle-slider {
-      background-color: var(--accent-blue);
+      background-color: #34c759; /* iOS Native Green for Switch */
     }
 
     input:checked + .toggle-slider:before {
-      transform: translateX(24px);
+      transform: translateX(22px);
     }
 
-    /* BARRA DE NAVEGACIÓN INFERIOR DE UN SOLO ARCHIVO */
+    /* BARRA DE NAVEGACIÓN INFERIOR NATIVA iOS */
     .nav-bar {
       position: fixed;
-      bottom: 12px;
+      bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: calc(100% - 24px);
-      max-width: 456px;
+      width: 100%;
+      max-width: 480px;
       background: var(--nav-bg);
-      border: 1px solid var(--nav-border);
-      border-radius: 24px;
+      border-top: 0.5px solid var(--nav-border);
+      border-radius: 0;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      padding: 6px;
-      box-shadow: var(--shadow-premium);
-      backdrop-filter: blur(20px);
+      padding: 6px 0 calc(env(safe-area-inset-bottom, 8px) + 2px);
+      box-shadow: none;
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
       z-index: 99;
     }
 
     .nav-tab {
       background: transparent;
       border: none;
-      color: var(--text-muted);
-      font-size: 11px;
-      font-weight: 700;
+      color: #8e8e93;
+      font-size: 10px;
+      font-weight: 500;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
-      padding: 10px 4px;
-      border-radius: 18px;
+      gap: 3px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: opacity 0.15s ease;
+    }
+
+    .nav-tab:active {
+      opacity: 0.6;
     }
 
     .nav-tab.active {
       color: var(--accent-blue);
-      background: rgba(56, 189, 248, 0.08);
+      background: transparent;
     }
 
     .nav-icon {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       fill: currentColor;
     }
 
-    /* HOJA FLOTANTE / MODAL DE REGISTRO */
+    /* HOJA FLOTANTE / MODAL DE REGISTRO iOS */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
+      background: rgba(0, 0, 0, 0.4);
       display: none;
       justify-content: center;
       align-items: flex-end;
@@ -792,12 +779,12 @@
     .modal-sheet {
       width: 100%;
       max-width: 480px;
-      background: var(--nav-bg);
-      border: 1px solid var(--nav-border);
-      border-top-left-radius: 30px;
-      border-top-right-radius: 30px;
-      padding: 24px 20px 30px;
-      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
+      background: var(--card-bg);
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      border-top: 0.5px solid var(--card-border);
+      padding: 10px 20px calc(20px + env(safe-area-inset-bottom, 12px));
+      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.2);
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -813,82 +800,63 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 12px;
+      border-bottom: 0.5px solid var(--border-color);
+      padding-bottom: 10px;
     }
 
     .modal-title {
-      font-size: 18px;
-      font-weight: 800;
+      font-size: 17px;
+      font-weight: 700;
     }
 
     .modal-close-btn {
       background: transparent;
       border: none;
-      color: var(--text-muted);
+      color: var(--accent-blue);
+      font-size: 15px;
+      font-weight: 500;
       cursor: pointer;
     }
 
-    /* BOTÓN FLOTANTE RÁPIDO "+" */
-    .fab-add {
-      position: fixed;
-      bottom: 84px;
-      right: 24px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: var(--accent-blue);
-      border: none;
-      color: #0b0f19;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
-      z-index: 90;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    [data-theme="light"] .fab-add {
-      color: #ffffff;
-      box-shadow: 0 6px 20px rgba(2, 132, 199, 0.3);
-    }
-
-    .fab-add:active {
-      transform: scale(0.9) rotate(45deg);
-    }
-
-    /* TOAST DE NOTIFICACIONES */
+    /* TOAST DE NOTIFICACIONES iOS */
     .toast {
       position: fixed;
-      bottom: 92px;
+      top: 24px;
       left: 50%;
       transform: translateX(-50%);
-      background: #1e293b;
+      background: rgba(28, 28, 30, 0.9);
       color: white;
-      padding: 12px 20px;
-      border-radius: 12px;
+      padding: 10px 18px;
+      border-radius: 10px;
       box-shadow: var(--shadow-premium);
       z-index: 110;
       display: none;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 600;
       text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 0.5px solid rgba(255, 255, 255, 0.1);
       width: calc(100% - 32px);
-      max-width: 400px;
+      max-width: 380px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
-    .toast.success { border-color: var(--accent-green); }
-    .toast.error { border-color: var(--accent-red); }
+    [data-theme="light"] .toast {
+      background: rgba(255, 255, 255, 0.9);
+      color: black;
+      border: 0.5px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .toast.success { border-left: 4px solid var(--accent-green); }
+    .toast.error { border-left: 4px solid var(--accent-red); }
 
     .toast.show {
       display: block;
-      animation: fadeInUp 0.2s ease-out;
+      animation: fadeInDown 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translate(-50%, 8px); }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translate(-50%, -10px); }
       to { opacity: 1; transform: translate(-50%, 0); }
     }
 
@@ -911,17 +879,20 @@
     
     <!-- ENCABEZADO -->
     <header>
-      <h1>
-        <svg style="width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2.5;" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-        </svg>
-        Control Familiar
-      </h1>
+      <h1>Control Familiar</h1>
       
-      <!-- Indicador de Sincronización -->
-      <div id="syncBadge" class="sync-status-badge" onclick="sincronizarDatos()">
-        <span id="syncDot" class="status-dot"></span>
-        <span id="syncText">Local</span>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <!-- Indicador de Sincronización -->
+        <div id="syncBadge" class="sync-status-badge" onclick="sincronizarDatos()">
+          <span id="syncDot" class="status-dot"></span>
+          <span id="syncText">Local</span>
+        </div>
+        <!-- Botón Agregar Gasto Estilo iOS Header -->
+        <button class="header-action-btn" onclick="abrirModalGasto()" title="Registrar nuevo gasto">
+          <svg style="width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 2.2;" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
+        </button>
       </div>
     </header>
 
@@ -1054,10 +1025,7 @@
     </button>
   </nav>
 
-  <!-- BOTÓN FLOTANTE RÁPIDO (+) -->
-  <button class="fab-add" onclick="abrirModalGasto()" title="Registrar nuevo gasto">
-    <svg style="width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 3;" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
-  </button>
+
 
   <!-- NOTIFICACIÓN TOAST -->
   <div id="toast" class="toast"></div>
@@ -1065,6 +1033,8 @@
   <!-- PANEL / BOTOM SHEET MODAL DE REGISTRO -->
   <div id="modalGasto" class="modal-overlay" onclick="cerrarModalGastoAlHacerClicFuera(event)">
     <div class="modal-sheet">
+      <!-- Indicador de arrastre estilo iOS -->
+      <div style="width: 38px; height: 5px; background: rgba(142, 142, 147, 0.4); border-radius: 99px; align-self: center; margin-bottom: 4px;"></div>
       <div class="modal-header">
         <h3 id="modalTitle" class="modal-title">Registrar Gasto</h3>
         <button class="modal-close-btn" onclick="cerrarModalGasto()">
@@ -1082,15 +1052,17 @@
 
         <div class="form-group">
           <label for="gastoCategoria">Categoría</label>
-          <select id="gastoCategoria" class="form-input" style="appearance: none;" onchange="actualizarConceptoDefault()">
-            <option value="Comida">Comida (afecta el límite diario)</option>
-            <option value="General">General / Extras</option>
-          </select>
+          <div class="ios-segmented-control">
+            <button type="button" id="seg-comida" class="segment-btn active" onclick="seleccionarCategoriaSegmento('Comida')">Comida</button>
+            <button type="button" id="seg-general" class="segment-btn" onclick="seleccionarCategoriaSegmento('General')">General</button>
+          </div>
+          <input type="hidden" id="gastoCategoria" value="Comida" />
         </div>
 
         <div class="form-group">
           <label for="gastoConcepto">Concepto / Descripción</label>
-          <input type="text" id="gastoConcepto" class="form-input" placeholder="Ej. Comida Diaria, Uber, Gas..." required />
+          <input type="text" id="gastoConcepto" list="conceptosSugeridos" class="form-input" placeholder="Ej. Comida Diaria, Uber, Gas..." required />
+          <datalist id="conceptosSugeridos"></datalist>
         </div>
 
         <div class="form-group">
@@ -1109,7 +1081,7 @@
     const CONFIG = {
       apiUrl: "https://script.google.com/macros/s/AKfycbxXkChXZT8zWpCAjCCUJkkqztQ2cNY493I1syHVnzsUhFZAaoxan6m7fsvjeJ5UoDY3/exec",
       token: "danielgastos2026",
-      fechaInicio: "2026-07-01",      // Fecha de partida para arrastrar el presupuesto
+      fechaInicio: "2026-07-13",      // Fecha de partida para arrastrar el presupuesto
       presupuestoDiario: 170,         // Presupuesto diario base en pesos
       saldoInicial: 0                 // Ahorro/Déficit inicial con el que arrancas en la Fecha de Inicio
     };
@@ -1313,7 +1285,7 @@
 
       // Formatear etiquetas de navegación
       const opciones = { day: 'numeric', month: 'short' };
-      document.getElementById("weekTitle").textContent = "Semana del 2026";
+      document.getElementById("weekTitle").textContent = "Semana del " + lunesSemana.getFullYear();
       document.getElementById("weekDates").textContent = `${lunesSemana.toLocaleDateString("es-MX", opciones)} - ${domingoSemana.toLocaleDateString("es-MX", opciones)}`;
 
       // 1. Calcular todo el presupuesto acumulado hasta el domingo de la semana activa
@@ -1455,6 +1427,38 @@
       
       // Actualizar el KPI Mensual
       actualizarKpiMensual();
+
+      // Actualizar sugerencias de autocompletado en el formulario
+      actualizarSugerenciasConcepto();
+    }
+
+    // ACTUALIZA LAS SUGERENCIAS AUTOMÁTICAS PARA HOMOLOGAR CONCEPTOS (DATALIST)
+    function actualizarSugerenciasConcepto() {
+      const datalist = document.getElementById("conceptosSugeridos");
+      if (!datalist) return;
+
+      // Sugerencias estándar base (para arrancar con ideas consistentes)
+      const sugerenciasBase = [
+        "Comida Diaria", "Verdulería", "Supermercado", "Tacos", "Cena", "Gasolina coche", 
+        "Gasolina moto", "Uber / Didi", "Gas Doméstico", "Renta", "Luz", "Agua", "Internet"
+      ];
+
+      // Obtener conceptos únicos que ya se hayan registrado en el historial de gastos
+      const conceptosRegistrados = state.gastos.map(g => g.concepto.trim());
+      
+      // Combinar listas, eliminar duplicados y ordenar alfabéticamente
+      const conjuntoUnico = new Set([...sugerenciasBase, ...conceptosRegistrados]);
+      const sugerenciasFinales = Array.from(conjuntoUnico)
+        .filter(c => c.length > 0)
+        .sort((a, b) => a.localeCompare(b, 'es', { sensitivity: 'base' }));
+
+      // Limpiar datalist actual e insertar nuevas sugerencias
+      datalist.innerHTML = "";
+      sugerenciasFinales.forEach(sugerencia => {
+        const option = document.createElement("option");
+        option.value = sugerencia;
+        datalist.appendChild(option);
+      });
     }
 
     // ACTUALIZAR DISTRIBUCIÓN MENSUAL VISUAL (KPI MENSUAL)
@@ -1584,13 +1588,31 @@
       
       const fecha = fechaStr || todayISO();
       document.getElementById("gastoFecha").value = fecha;
-      document.getElementById("gastoCategoria").value = "Comida";
-      actualizarConceptoDefault();
+      
+      // Inicializar el segmento en "Comida"
+      seleccionarCategoriaSegmento("Comida");
 
       document.getElementById("modalGasto").style.display = "flex";
     }
 
-    // MODAL HANDLERS
+    // MANEJADOR DE CONTROL SEGMENTADO ESTILO iOS NATIVO
+    function seleccionarCategoriaSegmento(categoria) {
+      document.getElementById("gastoCategoria").value = categoria;
+      
+      const btnComida = document.getElementById("seg-comida");
+      const btnGeneral = document.getElementById("seg-general");
+      
+      if (categoria === "Comida") {
+        btnComida.classList.add("active");
+        btnGeneral.classList.remove("active");
+      } else {
+        btnComida.classList.remove("active");
+        btnGeneral.classList.add("active");
+      }
+      
+      actualizarConceptoDefault();
+    }
+
     function cerrarModalGasto() {
       document.getElementById("modalGasto").style.display = "none";
     }
@@ -1602,13 +1624,8 @@
     }
 
     function actualizarConceptoDefault() {
-      const cat = document.getElementById("gastoCategoria").value;
-      const conceptoInput = document.getElementById("gastoConcepto");
-      if (cat === "Comida") {
-        conceptoInput.value = "Comida Diaria";
-      } else {
-        conceptoInput.value = "";
-      }
+      // Dejar siempre el campo vacío para que escribas libremente
+      document.getElementById("gastoConcepto").value = "";
     }
 
     async function guardarGastoSubmit(event) {
