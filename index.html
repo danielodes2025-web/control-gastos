@@ -8,63 +8,37 @@
   <!-- Importar Tipografía Outfit desde Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    /* VARIABLES DE DISEÑO (ESTILO iOS CUPERTINO NATIVO) */
+    /* VARIABLES DE DISEÑO (ESTILO iOS CUPERTINO NATIVO MEJORADO) */
     :root {
       --bg-gradient: linear-gradient(180deg, #000000 0%, #121214 100%);
       --card-bg: #1c1c1e; /* iOS Dark System Gray 2 */
-      --card-border: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.08);
       --text-primary: #ffffff;
-      --text-muted: #8e8e93; /* iOS Dark Gray */
-      --border-color: rgba(255, 255, 255, 0.08);
+      --text-muted: #98989d; /* iOS Dark Gray nítido */
+      --border-color: rgba(255, 255, 255, 0.1);
       
       --accent-blue: #0a84ff; /* iOS Dark System Blue */
       --accent-blue-hover: #007aff;
       --accent-green: #30d158; /* iOS Dark System Green */
-      --accent-green-bg: rgba(48, 209, 88, 0.15);
+      --accent-green-bg: rgba(48, 209, 88, 0.18);
       --accent-green-text: #30d158;
       
       --accent-yellow: #ffd60a; /* iOS Dark System Yellow */
-      --accent-yellow-bg: rgba(255, 214, 10, 0.15);
+      --accent-yellow-bg: rgba(255, 214, 10, 0.18);
       
       --accent-red: #ff453a; /* iOS Dark System Red */
-      --accent-red-bg: rgba(255, 69, 58, 0.15);
+      --accent-red-bg: rgba(255, 69, 58, 0.18);
       --accent-red-text: #ff453a;
       
-      --nav-bg: rgba(28, 28, 30, 0.94); /* iOS Dark Translucent Tab Bar */
-      --nav-border: rgba(255, 255, 255, 0.1);
-      --shadow-premium: 0 4px 20px rgba(0, 0, 0, 0.5);
-      --radius: 12px; /* iOS Standard Card Radius */
+      --nav-bg: #1c1c1e; /* Fondo sólido nítido para evitar borrosidad en móviles */
+      --nav-border: rgba(255, 255, 255, 0.12);
+      --shadow-premium: 0 4px 20px rgba(0, 0, 0, 0.6);
+      --radius: 14px;
       
-      --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    }
-
-    [data-theme="light"] {
-      --bg-gradient: linear-gradient(180deg, #f2f2f7 0%, #e5e5ea 100%); /* iOS Light System Gray 6 */
-      --card-bg: #ffffff; /* iOS Light Card Background */
-      --card-border: rgba(0, 0, 0, 0.03);
-      --text-primary: #000000;
-      --text-muted: #8e8e93; /* iOS Light Gray */
-      --border-color: rgba(0, 0, 0, 0.08);
-      
-      --accent-blue: #007aff; /* iOS Light System Blue */
-      --accent-blue-hover: #0056b3;
-      --accent-green: #34c759; /* iOS Light System Green */
-      --accent-green-bg: #e2fbe8;
-      --accent-green-text: #248a3d;
-      
-      --accent-yellow: #ffcc00; /* iOS Light System Yellow */
-      --accent-yellow-bg: #fff9db;
-      
-      --accent-red: #ff3b30; /* iOS Light System Red */
-      --accent-red-bg: #ffebeb;
-      --accent-red-text: #c61a09;
-      
-      --nav-bg: rgba(249, 249, 249, 0.94); /* iOS Light Translucent Tab Bar */
-      --nav-border: rgba(0, 0, 0, 0.1);
-      --shadow-premium: 0 4px 16px rgba(0, 0, 0, 0.06);
+      --font: 'Outfit', -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
     }
 
     * {
@@ -73,6 +47,8 @@
       padding: 0;
       font-family: var(--font);
       -webkit-tap-highlight-color: transparent;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     body {
@@ -82,7 +58,7 @@
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      padding-bottom: calc(80px + env(safe-area-inset-bottom, 16px));
+      padding-bottom: calc(85px + env(safe-area-inset-bottom, 16px));
     }
 
     /* CONTENEDOR PRINCIPAL - ENFOQUE MÓVIL ESTRICTO iOS */
@@ -100,72 +76,81 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 10px;
+      margin-top: 6px;
       padding: 0 4px;
     }
 
     header h1 {
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 800;
-      letter-spacing: -0.8px;
+      letter-spacing: -0.5px;
       color: var(--text-primary);
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
-    /* BOTÓN SINCRONIZAR Y RED DE ESTADO */
+    /* BOTÓN SINCRONIZAR Y RED DE ESTADO CON ANIMACIÓN DESTACADA */
     .sync-status-badge {
       display: flex;
       align-items: center;
       gap: 6px;
-      background: rgba(118, 118, 128, 0.15);
+      background: rgba(10, 132, 255, 0.15);
+      border: 1px solid rgba(10, 132, 255, 0.3);
       padding: 6px 12px;
       border-radius: 999px;
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--accent-blue);
       cursor: pointer;
-      transition: opacity 0.15s ease;
+      transition: all 0.2s ease;
     }
 
     .sync-status-badge:active {
-      opacity: 0.6;
+      transform: scale(0.96);
+      opacity: 0.8;
     }
 
     .status-dot {
-      width: 8px;
-      height: 8px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background: var(--accent-red);
+      display: inline-block;
     }
     .status-dot.online {
       background: var(--accent-green);
+      box-shadow: 0 0 8px var(--accent-green);
     }
     .status-dot.syncing {
       background: var(--accent-yellow);
-      animation: pulse 1s infinite alternate;
+      animation: pulse 0.8s infinite alternate;
     }
 
     @keyframes pulse {
-      0% { opacity: 0.4; }
-      100% { opacity: 1; }
+      0% { opacity: 0.3; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1.15); }
     }
 
-    /* BOTÓN HEADER AGREGAR GASTO */
+    /* BOTÓN HEADER AGREGAR GASTO DESTACADO (CTA PRINCIPAL) */
     .header-action-btn {
-      background: transparent;
+      background: linear-gradient(135deg, #0a84ff 0%, #0066cc 100%);
       border: none;
-      color: var(--accent-blue);
+      color: #ffffff;
       cursor: pointer;
-      padding: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      transition: opacity 0.15s ease;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(10, 132, 255, 0.4);
+      transition: all 0.2s ease;
     }
     .header-action-btn:active {
-      opacity: 0.4;
+      transform: scale(0.95);
+      box-shadow: 0 2px 8px rgba(10, 132, 255, 0.2);
     }
 
     /* NAVEGADOR DE SEMANA */
@@ -181,20 +166,21 @@
     }
 
     .nav-btn {
-      background: transparent;
+      background: rgba(118, 118, 128, 0.16);
       border: none;
       color: var(--accent-blue);
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: opacity 0.15s ease;
+      transition: background 0.15s ease;
     }
 
     .nav-btn:active {
-      opacity: 0.4;
+      background: rgba(10, 132, 255, 0.25);
     }
 
     .week-label {
@@ -243,7 +229,7 @@
 
     .summary-item strong {
       font-size: 22px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: -0.4px;
     }
 
@@ -263,8 +249,8 @@
     }
 
     .summary-full strong {
-      font-size: 17px;
-      font-weight: 700;
+      font-size: 18px;
+      font-weight: 800;
     }
 
     .text-green { color: var(--accent-green-text); }
@@ -306,7 +292,8 @@
     }
 
     .day-card.today {
-      border-color: rgba(10, 132, 255, 0.4);
+      border: 1.5px solid var(--accent-blue);
+      box-shadow: 0 4px 16px rgba(10, 132, 255, 0.2);
     }
 
     .day-header {
@@ -331,9 +318,9 @@
     .today-badge {
       background: var(--accent-blue);
       color: #ffffff;
-      font-size: 9px;
-      font-weight: 700;
-      padding: 1px 5px;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 6px;
       border-radius: 4px;
       text-transform: uppercase;
     }
@@ -347,8 +334,8 @@
     .day-status-pill {
       font-size: 12px;
       font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 6px;
+      padding: 4px 10px;
+      border-radius: 8px;
     }
 
     .day-status-pill.success {
@@ -365,9 +352,9 @@
     .day-budget-details {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      background: rgba(118, 118, 128, 0.08);
+      background: rgba(118, 118, 128, 0.12);
       border-radius: 8px;
-      padding: 6px;
+      padding: 8px 6px;
       font-size: 11px;
       text-align: center;
     }
@@ -380,48 +367,50 @@
 
     .budget-subitem span {
       color: var(--text-muted);
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .budget-subitem strong {
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text-primary);
     }
 
-    /* ACCIONES DEL DIA (REGISTROS RAPIDOS) */
+    /* ACCIONES DEL DIA */
     .day-actions {
       display: grid;
       grid-template-columns: 1.2fr 1fr;
       gap: 8px;
-      margin-top: 1px;
+      margin-top: 2px;
     }
 
     .btn {
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 4px;
       transition: opacity 0.15s ease;
-      height: 34px;
+      height: 36px;
     }
 
     .btn:active {
-      opacity: 0.6;
+      opacity: 0.7;
     }
 
     .btn-quick-170 {
       background: var(--accent-green-bg);
       color: var(--accent-green-text);
+      border: 0.5px solid rgba(48, 209, 88, 0.3);
     }
 
     .btn-custom-expense {
-      background: rgba(118, 118, 128, 0.15);
+      background: rgba(118, 118, 128, 0.18);
       color: var(--accent-blue);
+      border: 0.5px solid rgba(10, 132, 255, 0.2);
     }
 
     /* HISTORIAL DE GASTOS DEL DIA */
@@ -439,7 +428,7 @@
       align-items: center;
       font-size: 13px;
       padding: 6px 4px;
-      border-bottom: 0.5px solid rgba(84, 84, 88, 0.1);
+      border-bottom: 0.5px solid rgba(255, 255, 255, 0.05);
     }
     
     .expense-row:last-child {
@@ -454,24 +443,24 @@
 
     .expense-cat-tag {
       font-size: 9px;
-      padding: 2px 5px;
+      padding: 2px 6px;
       border-radius: 4px;
-      font-weight: 700;
+      font-weight: 800;
       text-transform: uppercase;
     }
 
     .expense-cat-tag.comida {
-      background: rgba(10, 132, 255, 0.12);
-      color: var(--accent-blue);
+      background: rgba(10, 132, 255, 0.2);
+      color: #64d2ff;
     }
     
     .expense-cat-tag.general {
-      background: rgba(142, 142, 147, 0.15);
-      color: var(--text-muted);
+      background: rgba(142, 142, 147, 0.25);
+      color: #d1d1d6;
     }
 
     .expense-concept {
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .expense-right {
@@ -481,7 +470,7 @@
     }
 
     .expense-amount {
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .expense-delete-btn {
@@ -503,7 +492,7 @@
     /* CONTROLES SEGMENTADOS ESTILO iOS NATIVO */
     .ios-segmented-control {
       display: flex;
-      background: rgba(118, 118, 128, 0.12);
+      background: rgba(118, 118, 128, 0.18);
       border-radius: 8px;
       padding: 2px;
       border: none;
@@ -527,13 +516,7 @@
     .segment-btn.active {
       background: #636366; /* iOS Dark Selected Segment */
       color: #ffffff;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    }
-
-    [data-theme="light"] .segment-btn.active {
-      background: #ffffff; /* iOS Light Selected Segment */
-      color: #000000;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     }
 
     /* HISTORIAL GLOBAL */
@@ -547,10 +530,10 @@
 
     .search-box {
       width: 100%;
-      background: rgba(118, 118, 128, 0.12);
+      background: rgba(118, 118, 128, 0.16);
       border: none;
-      border-radius: 8px;
-      padding: 10px 12px;
+      border-radius: 10px;
+      padding: 10px 14px;
       color: var(--text-primary);
       font-size: 14px;
       outline: none;
@@ -570,7 +553,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 10px 4px;
-      border-bottom: 0.5px solid rgba(84, 84, 88, 0.1);
+      border-bottom: 0.5px solid rgba(255, 255, 255, 0.05);
     }
 
     .global-history-item:last-child {
@@ -580,7 +563,7 @@
     .global-item-left {
       display: flex;
       flex-direction: column;
-      gap: 1px;
+      gap: 2px;
     }
 
     .global-item-title {
@@ -598,7 +581,7 @@
       background: var(--card-bg);
       border: 0.5px solid var(--card-border);
       border-radius: var(--radius);
-      padding: 14px 16px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
       gap: 14px;
@@ -617,37 +600,38 @@
     .form-group {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 6px;
     }
 
     .form-group label {
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text-muted);
     }
 
     .form-input {
       width: 100%;
-      background: rgba(118, 118, 128, 0.12);
-      border: none;
-      border-radius: 8px;
-      padding: 10px 12px;
+      background: rgba(118, 118, 128, 0.16);
+      border: 0.5px solid var(--card-border);
+      border-radius: 10px;
+      padding: 12px 14px;
       color: var(--text-primary);
-      font-size: 14px;
+      font-size: 15px;
       outline: none;
     }
 
     .form-input:focus {
-      background: rgba(118, 118, 128, 0.18);
+      border-color: var(--accent-blue);
+      background: rgba(118, 118, 128, 0.22);
     }
 
     .btn-primary {
       background: var(--accent-blue);
       color: #ffffff;
       font-weight: 700;
-      border-radius: 8px;
-      font-size: 14px;
-      height: 40px;
+      border-radius: 10px;
+      font-size: 15px;
+      height: 44px;
       border: none;
       cursor: pointer;
       transition: opacity 0.15s;
@@ -657,91 +641,36 @@
       opacity: 0.7;
     }
 
-    .theme-toggle-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 0.5px solid var(--border-color);
-      padding-top: 12px;
-      margin-top: 2px;
-    }
-
-    .toggle-switch {
-      position: relative;
-      display: inline-block;
-      width: 50px;
-      height: 28px;
-    }
-
-    .toggle-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .toggle-slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: rgba(120, 120, 128, 0.16);
-      transition: .25s;
-      border-radius: 34px;
-    }
-
-    .toggle-slider:before {
-      position: absolute;
-      content: "";
-      height: 24px;
-      width: 24px;
-      left: 2px;
-      bottom: 2px;
-      background-color: white;
-      transition: .25s;
-      border-radius: 50%;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-    }
-
-    input:checked + .toggle-slider {
-      background-color: #34c759; /* iOS Native Green for Switch */
-    }
-
-    input:checked + .toggle-slider:before {
-      transform: translateX(22px);
-    }
-
-    /* BARRA DE NAVEGACIÓN INFERIOR NATIVA iOS */
+    /* BARRA DE NAVEGACIÓN INFERIOR NATIVA iOS (NÍTIDA, SIN DESENFOQUE NI SUBPÍXELES) */
     .nav-bar {
       position: fixed;
       bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 0;
+      right: 0;
+      margin: 0 auto;
       width: 100%;
       max-width: 480px;
       background: var(--nav-bg);
       border-top: 0.5px solid var(--nav-border);
-      border-radius: 0;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      padding: 6px 0 calc(env(safe-area-inset-bottom, 8px) + 2px);
-      box-shadow: none;
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      padding: 8px 0 calc(env(safe-area-inset-bottom, 8px) + 4px);
       z-index: 99;
     }
 
     .nav-tab {
       background: transparent;
       border: none;
-      color: #8e8e93;
-      font-size: 10px;
-      font-weight: 500;
+      color: #98989d;
+      font-size: 11px;
+      font-weight: 600;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 3px;
       cursor: pointer;
-      transition: opacity 0.15s ease;
+      transition: color 0.15s ease;
     }
 
     .nav-tab:active {
@@ -750,7 +679,6 @@
 
     .nav-tab.active {
       color: var(--accent-blue);
-      background: transparent;
     }
 
     .nav-icon {
@@ -763,7 +691,7 @@
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.6);
       display: none;
       justify-content: center;
       align-items: flex-end;
@@ -780,11 +708,11 @@
       width: 100%;
       max-width: 480px;
       background: var(--card-bg);
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
       border-top: 0.5px solid var(--card-border);
-      padding: 10px 20px calc(20px + env(safe-area-inset-bottom, 12px));
-      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.2);
+      padding: 12px 20px calc(20px + env(safe-area-inset-bottom, 12px));
+      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.4);
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -805,8 +733,8 @@
     }
 
     .modal-title {
-      font-size: 17px;
-      font-weight: 700;
+      font-size: 18px;
+      font-weight: 800;
     }
 
     .modal-close-btn {
@@ -814,37 +742,29 @@
       border: none;
       color: var(--accent-blue);
       font-size: 15px;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
     }
 
-    /* TOAST DE NOTIFICACIONES iOS */
+    /* TOAST DE NOTIFICACIONES iOS NÍTIDO */
     .toast {
       position: fixed;
-      top: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(28, 28, 30, 0.9);
-      color: white;
-      padding: 10px 18px;
-      border-radius: 10px;
-      box-shadow: var(--shadow-premium);
+      top: 20px;
+      left: 0; right: 0;
+      margin: 0 auto;
+      background: #2c2c2e;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
       z-index: 110;
       display: none;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
       text-align: center;
-      border: 0.5px solid rgba(255, 255, 255, 0.1);
+      border: 0.5px solid rgba(255, 255, 255, 0.15);
       width: calc(100% - 32px);
       max-width: 380px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-
-    [data-theme="light"] .toast {
-      background: rgba(255, 255, 255, 0.9);
-      color: black;
-      border: 0.5px solid rgba(0, 0, 0, 0.1);
     }
 
     .toast.success { border-left: 4px solid var(--accent-green); }
@@ -856,8 +776,8 @@
     }
 
     @keyframes fadeInDown {
-      from { opacity: 0; transform: translate(-50%, -10px); }
-      to { opacity: 1; transform: translate(-50%, 0); }
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* ELEMENTOS VACÍOS O SIN INFORMACIÓN */
@@ -881,17 +801,18 @@
     <header>
       <h1>Control Familiar</h1>
       
-      <div style="display: flex; align-items: center; gap: 8px;">
-        <!-- Indicador de Sincronización -->
-        <div id="syncBadge" class="sync-status-badge" onclick="sincronizarDatos()">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <!-- Indicador de Sincronización Destacado -->
+        <div id="syncBadge" class="sync-status-badge" onclick="sincronizarDatos()" title="Clic para sincronizar con Google Sheets">
           <span id="syncDot" class="status-dot"></span>
-          <span id="syncText">Local</span>
+          <span id="syncText">Sincronizar</span>
         </div>
-        <!-- Botón Agregar Gasto Estilo iOS Header -->
+        <!-- Botón Agregar Gasto Destacado -->
         <button class="header-action-btn" onclick="abrirModalGasto()" title="Registrar nuevo gasto">
-          <svg style="width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 2.2;" viewBox="0 0 24 24">
+          <svg style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.8;" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
           </svg>
+          <span>Gasto</span>
         </button>
       </div>
     </header>
@@ -930,14 +851,14 @@
       </div>
 
       <!-- Distribución Mensual Visual (KPI) -->
-      <div class="summary-card" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(99, 102, 241, 0.03)); border: 1px solid rgba(56, 189, 248, 0.12); display: flex; flex-direction: column; gap: 8px;">
+      <div class="summary-card" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(99, 102, 241, 0.03)); border: 1px solid rgba(56, 189, 248, 0.15); display: flex; flex-direction: column; gap: 8px;">
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <span style="font-size: 11px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Distribución Mensual (<span id="currentMonthName">Mes</span>)</span>
           <span id="monthlyTotalSpent" style="font-size: 14px; font-weight: 800; color: var(--text-primary);">$0.00</span>
         </div>
         
         <!-- Barra de progreso segmentada -->
-        <div style="width: 100%; height: 6px; background: rgba(255, 255, 255, 0.05); border-radius: 99px; overflow: hidden; display: flex; margin: 2px 0;">
+        <div style="width: 100%; height: 6px; background: rgba(255, 255, 255, 0.08); border-radius: 99px; overflow: hidden; display: flex; margin: 2px 0;">
           <div id="monthlyComidaBar" style="width: 50%; height: 100%; background: var(--accent-blue); transition: width 0.3s ease;"></div>
           <div id="monthlyGeneralBar" style="width: 50%; height: 100%; background: var(--text-muted); transition: width 0.3s ease;"></div>
         </div>
@@ -987,22 +908,14 @@
         </div>
       </div>
 
-      <!-- Tema y Datos Locales -->
+      <!-- Sincronización Manual -->
       <div class="settings-card">
         <div class="settings-title">
-          <svg style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.43l-1.003.828c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.99l1.004.831a1.125 1.125 0 0 1 .26 1.43l-1.297 2.247a1.125 1.125 0 0 1-1.37.491l-1.216-.456c-.356-.133-.751-.072-1.076.124a6.57 6.57 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.43l1.004-.83c.292-.24.437-.613.43-.992a6.932 6.932 0 0 1 0-.255c.007-.378-.138-.75-.43-.99l-1.004-.831a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.645-.869l.214-1.28Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>
-          Preferencias
+          <svg style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" /></svg>
+          Estado de Sincronización
         </div>
-        
-        <div class="theme-toggle-container">
-          <span style="font-weight: 700; font-size: 14px;">Modo Claro / Activo</span>
-          <label class="toggle-switch">
-            <input type="checkbox" id="themeCheckbox" onchange="alternarTema(this.checked)" />
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-
-        <button class="btn btn-quick-170" style="margin-top: 10px;" onclick="exportarBackupJSON()">Exportar Datos Locales (JSON)</button>
+        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.4;">La aplicación descarga automáticamente tus gastos de Google Sheets al iniciar. Si realizas cambios en la hoja externa, puedes forzar la actualización:</p>
+        <button class="btn btn-primary" onclick="sincronizarDatos()">Sincronizar Datos Ahora</button>
       </div>
 
     </section>
@@ -1020,17 +933,15 @@
       Historial
     </button>
     <button class="nav-tab" onclick="cambiarSeccion('ajustes')">
-      <svg class="nav-icon" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+      <svg class="nav-icon" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6-3.6 3.6z"/></svg>
       Ajustes
     </button>
   </nav>
 
-
-
   <!-- NOTIFICACIÓN TOAST -->
   <div id="toast" class="toast"></div>
 
-  <!-- PANEL / BOTOM SHEET MODAL DE REGISTRO -->
+  <!-- PANEL MODAL DE REGISTRO iOS -->
   <div id="modalGasto" class="modal-overlay" onclick="cerrarModalGastoAlHacerClicFuera(event)">
     <div class="modal-sheet">
       <!-- Indicador de arrastre estilo iOS -->
@@ -1077,13 +988,13 @@
 
   <!-- SCRIPT DE LOGICA Y APLICACION -->
   <script>
-    // CONFIGURACIÓN GLOBAL DE LA APLICACIÓN (EDITABLE DESDE CÓDIGO)
+    // CONFIGURACIÓN GLOBAL DE LA APLICACIÓN
     const CONFIG = {
       apiUrl: "https://script.google.com/macros/s/AKfycbxXkChXZT8zWpCAjCCUJkkqztQ2cNY493I1syHVnzsUhFZAaoxan6m7fsvjeJ5UoDY3/exec",
       token: "danielgastos2026",
-      fechaInicio: "2026-07-13",      // Fecha de partida para arrastrar el presupuesto
+      fechaInicio: "2026-08-03",      // Fecha de inicio ajustada a hoy (3 de Agosto 2026)
       presupuestoDiario: 170,         // Presupuesto diario base en pesos
-      saldoInicial: 0                 // Ahorro/Déficit inicial con el que arrancas en la Fecha de Inicio
+      saldoInicial: 0                 // Ahorro/Déficit inicial
     };
 
     function obtenerPresupuestoDiario() {
@@ -1102,7 +1013,7 @@
     }
 
     let state = {
-      gastos: [],             // Lista de todos los gastos locales cargados
+      gastos: [],              // Lista de todos los gastos locales cargados
       semanaActiva: new Date(),// Fecha representativa de la semana activa en el tablero (hoy)
       online: navigator.onLine,
       sincronizando: false
@@ -1110,11 +1021,6 @@
 
     // INICIALIZACIÓN
     window.addEventListener("DOMContentLoaded", () => {
-      // Aplicar tema guardado
-      const savedTheme = localStorage.getItem("theme") || "dark";
-      document.body.setAttribute("data-theme", savedTheme);
-      document.getElementById("themeCheckbox").checked = (savedTheme === "light");
-
       // Cargar presupuesto personalizado si existe
       document.getElementById("presupuestoDiarioInput").value = obtenerPresupuestoDiario();
 
@@ -1144,15 +1050,19 @@
       // Cargar datos almacenados en localStorage temporalmente
       const localData = localStorage.getItem("db_gastos");
       if (localData) {
-        state.gastos = JSON.parse(localData);
+        try {
+          state.gastos = JSON.parse(localData);
+        } catch (e) {
+          console.error("Error leyendo caché local:", e);
+        }
       }
 
       actualizarConexionBadge();
       
-      // Renderizar tablero
+      // Renderizar tablero con los datos actuales
       actualizarTablero();
 
-      // Sincronizar datos de inmediato
+      // SINCRONIZACIÓN AUTOMÁTICA INMEDIATA AL ABRIR LA APP
       sincronizarDatos();
     });
 
@@ -1189,10 +1099,7 @@
       const y = date.getFullYear();
       const m = String(date.getMonth() + 1).padStart(2, "0");
       const d = String(date.getDate()).padStart(2, "0");
-      return `${y}-${m}-${dayNameFormat(d)}`;
-      
-      // Corrección de bug menor en pad
-      function dayNameFormat(val) { return val; }
+      return `${y}-${m}-${d}`;
     }
 
     // Retorna la fecha lunes de la semana a la que pertenece la fecha dada
@@ -1225,7 +1132,6 @@
     }
 
     // LÓGICA DE PRESUPUESTO ACUMULATIVO
-    // Calcula el presupuesto disponible, gastado, ajuste y acumulado día por día desde la fecha de inicio configurada
     function calcularPresupuestoAcumulado(hastaFecha) {
       // 1. Obtener la fecha de inicio
       let d = new Date(CONFIG.fechaInicio + "T00:00:00");
@@ -1235,7 +1141,7 @@
       
       const limiteFecha = new Date(hastaFecha + "T00:00:00");
       
-      // Agrupar gastos por fecha (solo categoría "Comida" afecta el presupuesto acumulativo de comida)
+      // Agrupar gastos por fecha (categoría "Comida" afecta presupuesto acumulativo)
       const gastosPorFecha = {};
       state.gastos.forEach(g => {
         if (g.categoria === "Comida") {
@@ -1244,7 +1150,7 @@
       });
 
       const calculos = {};
-      let rolloverBalance = CONFIG.saldoInicial; // Ahorro/Déficit arrastrado del día anterior
+      let rolloverBalance = CONFIG.saldoInicial;
 
       // Bucle secuencial día por día
       while (d <= limiteFecha) {
@@ -1306,7 +1212,6 @@
         diaFecha.setDate(diaFecha.getDate() + i);
         const diaStr = formatISO(diaFecha);
 
-        // Obtener datos calculados para este día. Si la fecha es anterior a la fecha de inicio de presupuestos, usar valores por defecto.
         const diaCalc = calculosPresupuesto[diaStr] || {
           base: obtenerPresupuestoDiario(),
           rollover: 0,
@@ -1317,13 +1222,12 @@
 
         totalDisponibleSemanal += diaCalc.base;
         
-        // Sumar todos los gastos de este día (tanto Comida como General)
+        // Sumar todos los gastos de este día
         const gastosDia = state.gastos.filter(g => g.fecha === diaStr);
         const gastadoTotalDia = gastosDia.reduce((sum, g) => sum + parseFloat(g.monto), 0);
         totalGastadoSemanal += gastadoTotalDia;
         
         if (i === 6) {
-          // El balance acumulado total neto es el restante final del domingo
           ultimoAhorroAcumulado = diaCalc.restante;
         }
 
@@ -1331,7 +1235,6 @@
         const dayCard = document.createElement("div");
         dayCard.className = `day-card ${diaStr === hoyISOStr ? "today" : ""}`;
 
-        // Alerta visual de presupuesto
         let statusClass = "success";
         let statusText = `Restan: ${formatearDinero(diaCalc.restante)}`;
         
@@ -1342,7 +1245,6 @@
 
         const isToday = diaStr === hoyISOStr;
 
-        // Html de la lista de gastos individuales de este día
         let expensesListHtml = "";
         if (gastosDia.length > 0) {
           expensesListHtml = `
@@ -1427,31 +1329,26 @@
       // Actualizar el KPI Mensual
       actualizarKpiMensual();
 
-      // Actualizar sugerencias de autocompletado en el formulario
+      // Actualizar sugerencias de autocompletado
       actualizarSugerenciasConcepto();
     }
 
-    // ACTUALIZA LAS SUGERENCIAS AUTOMÁTICAS PARA HOMOLOGAR CONCEPTOS (DATALIST)
+    // SUGERENCIAS AUTOMÁTICAS
     function actualizarSugerenciasConcepto() {
       const datalist = document.getElementById("conceptosSugeridos");
       if (!datalist) return;
 
-      // Sugerencias estándar base (para arrancar con ideas consistentes)
       const sugerenciasBase = [
         "Comida Diaria", "Verdulería", "Supermercado", "Tacos", "Cena", "Gasolina coche", 
         "Gasolina moto", "Uber / Didi", "Gas Doméstico", "Renta", "Luz", "Agua", "Internet"
       ];
 
-      // Obtener conceptos únicos que ya se hayan registrado en el historial de gastos
       const conceptosRegistrados = state.gastos.map(g => g.concepto.trim());
-      
-      // Combinar listas, eliminar duplicados y ordenar alfabéticamente
       const conjuntoUnico = new Set([...sugerenciasBase, ...conceptosRegistrados]);
       const sugerenciasFinales = Array.from(conjuntoUnico)
         .filter(c => c.length > 0)
         .sort((a, b) => a.localeCompare(b, 'es', { sensitivity: 'base' }));
 
-      // Limpiar datalist actual e insertar nuevas sugerencias
       datalist.innerHTML = "";
       sugerenciasFinales.forEach(sugerencia => {
         const option = document.createElement("option");
@@ -1460,16 +1357,15 @@
       });
     }
 
-    // ACTUALIZAR DISTRIBUCIÓN MENSUAL VISUAL (KPI MENSUAL)
+    // KPI MENSUAL
     function actualizarKpiMensual() {
       const fechaBase = state.semanaActiva;
       const anio = fechaBase.getFullYear();
-      const mesIndex = fechaBase.getMonth(); // 0-11
+      const mesIndex = fechaBase.getMonth();
       const nombresMeses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
       
       document.getElementById("currentMonthName").textContent = nombresMeses[mesIndex];
 
-      // Filtrar gastos del mes correspondiente a la semana activa (formato YYYY-MM)
       const prefijoMes = `${anio}-${String(mesIndex + 1).padStart(2, "0")}`;
       const gastosMes = state.gastos.filter(g => g.fecha.startsWith(prefijoMes));
 
@@ -1496,7 +1392,7 @@
 
       if (totalMes > 0) {
         pctComida = Math.round((totalComida / totalMes) * 100);
-        pctGeneral = 100 - pctComida; // Asegurar suma del 100%
+        pctGeneral = 100 - pctComida;
       }
 
       document.getElementById("monthlyComidaPct").textContent = `${pctComida}%`;
@@ -1506,12 +1402,11 @@
       document.getElementById("monthlyGeneralBar").style.width = `${pctGeneral}%`;
     }
 
-    // RENDERIZAR HISTORIAL COMPLETO
+    // HISTORIAL COMPLETO
     function renderHistorialGlobal(filtro = "") {
       const container = document.getElementById("globalHistory");
       container.innerHTML = "";
 
-      // Filtrar y ordenar gastos (el más nuevo primero)
       let gastosFiltrados = [...state.gastos].sort((a, b) => b.fecha.localeCompare(a.fecha) || b.fechaRegistro.localeCompare(a.fechaRegistro));
 
       if (filtro) {
@@ -1551,13 +1446,11 @@
       });
     }
 
-    // ACCIONES DE BÚSQUEDA Y FILTRO
     function filtrarHistorial() {
       const val = document.getElementById("searchInput").value;
       renderHistorialGlobal(val);
     }
 
-    // ACCIONES Y ENTRADA DE DATOS
     function cambiarSeccion(nombre) {
       document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
       document.querySelectorAll(".nav-tab").forEach(tab => tab.classList.remove("active"));
@@ -1588,13 +1481,10 @@
       const fecha = fechaStr || todayISO();
       document.getElementById("gastoFecha").value = fecha;
       
-      // Inicializar el segmento en "Comida"
       seleccionarCategoriaSegmento("Comida");
-
       document.getElementById("modalGasto").style.display = "flex";
     }
 
-    // MANEJADOR DE CONTROL SEGMENTADO ESTILO iOS NATIVO
     function seleccionarCategoriaSegmento(categoria, limpiarConcepto = true) {
       document.getElementById("gastoCategoria").value = categoria;
       
@@ -1610,7 +1500,7 @@
       }
       
       if (limpiarConcepto) {
-        actualizarConceptoDefault();
+        document.getElementById("gastoConcepto").value = "";
       }
     }
 
@@ -1622,11 +1512,6 @@
       if (e.target.id === "modalGasto") {
         cerrarModalGasto();
       }
-    }
-
-    function actualizarConceptoDefault() {
-      // Dejar siempre el campo vacío para que escribas libremente
-      document.getElementById("gastoConcepto").value = "";
     }
 
     async function guardarGastoSubmit(event) {
@@ -1693,13 +1578,11 @@
     async function eliminarGasto(id) {
       if (!confirm("¿Seguro que deseas eliminar este gasto?")) return;
 
-      // 1. Eliminar localmente de inmediato (UI Reactiva)
       state.gastos = state.gastos.filter(g => g.id !== id);
       guardarDatosLocales();
       actualizarTablero();
       mostrarNotificacion("Gasto eliminado localmente", "success");
 
-      // 2. Sincronizar eliminación con Apps Script
       if (CONFIG.apiUrl && state.online) {
         try {
           actualizarSincronizacion(true);
@@ -1725,7 +1608,7 @@
       actualizarConexionBadge();
     }
 
-    // COMUNICACIÓN CON GOOGLE APPS SCRIPT (CORS FETCH)
+    // COMUNICACIÓN CON GOOGLE APPS SCRIPT
     async function peticionApi(action, params = {}) {
       const url = CONFIG.apiUrl;
       const token = CONFIG.token;
@@ -1736,7 +1619,6 @@
         ...params
       });
 
-      // fetch estándar con soporte CORS y redirección automática de Google
       const response = await fetch(`${url}?${queryParams.toString()}`);
       if (!response.ok) {
         throw new Error("Error de red");
@@ -1744,7 +1626,7 @@
       return await response.json();
     }
 
-    // SINCRONIZACIÓN COMPLETA (BAJADA DESDE CLOUD)
+    // SINCRONIZACIÓN COMPLETA AUTOMÁTICA AL ABRIR Y AL HACER CLIC
     async function sincronizarDatos() {
       if (!CONFIG.apiUrl) {
         mostrarNotificacion("API de Apps Script no configurada en el código.", "error");
@@ -1752,37 +1634,35 @@
       }
 
       if (!state.online) {
-        mostrarNotificacion("Sin conexión a internet. No se puede sincronizar.", "error");
+        mostrarNotificacion("Sin conexión a internet. Mostrando datos locales.", "error");
         return;
       }
 
       try {
         actualizarSincronizacion(true);
-        mostrarNotificacion("Descargando datos...", "");
+        mostrarNotificacion("Sincronizando con Google Sheets...", "");
         
         const response = await peticionApi("getGastos");
         if (response && response.ok) {
-          // Reemplazar base de datos local de gastos con la remota
           state.gastos = response.data.gastos || [];
+          
+          // Sincronizar fechaInicio remota si existe
+          if (response.data.config && response.data.config.fechaInicio) {
+            CONFIG.fechaInicio = response.data.config.fechaInicio;
+          }
+
           guardarDatosLocales();
           actualizarTablero();
-          mostrarNotificacion("Sincronización completa", "success");
+          mostrarNotificacion("¡Datos sincronizados con éxito!", "success");
         } else {
           mostrarNotificacion("Error al sincronizar: " + (response.error || "Desconocido"), "error");
         }
       } catch (err) {
-        console.error(err);
-        mostrarNotificacion("Error de conexión con el backend", "error");
+        console.error("Error sincronizando:", err);
+        mostrarNotificacion("Conexión ocupada o sin red. Usando datos locales.", "error");
       } finally {
         actualizarSincronizacion(false);
       }
-    }
-
-    // TEMA CLARO Y OSCURO
-    function alternarTema(esClaro) {
-      const tema = esClaro ? "light" : "dark";
-      document.body.setAttribute("data-theme", tema);
-      localStorage.setItem("theme", tema);
     }
 
     // NOTIFICACIONES TOAST
@@ -1794,18 +1674,7 @@
 
       setTimeout(() => {
         toast.className = "toast";
-      }, 3000);
-    }
-
-    // EXPORTAR BACKUP
-    function exportarBackupJSON() {
-      const datosStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state.gastos, null, 2));
-      const downloadAnchor = document.createElement('a');
-      downloadAnchor.setAttribute("href", datosStr);
-      downloadAnchor.setAttribute("download", `backup_gastos_jesi_daniel_${todayISO()}.json`);
-      document.body.appendChild(downloadAnchor);
-      downloadAnchor.click();
-      downloadAnchor.remove();
+      }, 3200);
     }
   </script>
 </body>
