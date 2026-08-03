@@ -11,31 +11,31 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    /* VARIABLES DE DISEÑO (ESTILO iOS CUPERTINO NATIVO MEJORADO) */
+    /* VARIABLES DE DISEÑO - MODO CLARO (LIGHT MODE iOS CUPERTINO) */
     :root {
-      --bg-gradient: linear-gradient(180deg, #000000 0%, #121214 100%);
-      --card-bg: #1c1c1e; /* iOS Dark System Gray 2 */
-      --card-border: rgba(255, 255, 255, 0.08);
-      --text-primary: #ffffff;
-      --text-muted: #98989d; /* iOS Dark Gray nítido */
-      --border-color: rgba(255, 255, 255, 0.1);
+      --bg-gradient: linear-gradient(180deg, #f2f2f7 0%, #e5e5ea 100%);
+      --card-bg: #ffffff;
+      --card-border: rgba(0, 0, 0, 0.06);
+      --text-primary: #000000;
+      --text-muted: #6c6c70;
+      --border-color: rgba(0, 0, 0, 0.08);
       
-      --accent-blue: #0a84ff; /* iOS Dark System Blue */
-      --accent-blue-hover: #007aff;
-      --accent-green: #30d158; /* iOS Dark System Green */
-      --accent-green-bg: rgba(48, 209, 88, 0.18);
-      --accent-green-text: #30d158;
+      --accent-blue: #007aff;
+      --accent-blue-hover: #0056b3;
+      --accent-green: #34c759;
+      --accent-green-bg: #e2fbe8;
+      --accent-green-text: #1b7a32;
       
-      --accent-yellow: #ffd60a; /* iOS Dark System Yellow */
-      --accent-yellow-bg: rgba(255, 214, 10, 0.18);
+      --accent-yellow: #ffcc00;
+      --accent-yellow-bg: #fff9db;
       
-      --accent-red: #ff453a; /* iOS Dark System Red */
-      --accent-red-bg: rgba(255, 69, 58, 0.18);
-      --accent-red-text: #ff453a;
+      --accent-red: #ff3b30;
+      --accent-red-bg: #ffebeb;
+      --accent-red-text: #c61a09;
       
-      --nav-bg: #1c1c1e; /* Fondo sólido nítido para evitar borrosidad en móviles */
-      --nav-border: rgba(255, 255, 255, 0.12);
-      --shadow-premium: 0 4px 20px rgba(0, 0, 0, 0.6);
+      --nav-bg: #ffffff;
+      --nav-border: rgba(0, 0, 0, 0.1);
+      --shadow-premium: 0 4px 16px rgba(0, 0, 0, 0.06);
       --radius: 14px;
       
       --font: 'Outfit', -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
@@ -95,8 +95,8 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      background: rgba(10, 132, 255, 0.15);
-      border: 1px solid rgba(10, 132, 255, 0.3);
+      background: rgba(0, 122, 255, 0.1);
+      border: 1px solid rgba(0, 122, 255, 0.25);
       padding: 6px 12px;
       border-radius: 999px;
       font-size: 12px;
@@ -120,7 +120,7 @@
     }
     .status-dot.online {
       background: var(--accent-green);
-      box-shadow: 0 0 8px var(--accent-green);
+      box-shadow: 0 0 6px var(--accent-green);
     }
     .status-dot.syncing {
       background: var(--accent-yellow);
@@ -132,9 +132,9 @@
       100% { opacity: 1; transform: scale(1.15); }
     }
 
-    /* BOTÓN HEADER AGREGAR GASTO DESTACADO (CTA PRINCIPAL) */
+    /* BOTÓN HEADER AGREGAR GASTO EN CABECERA */
     .header-action-btn {
-      background: linear-gradient(135deg, #0a84ff 0%, #0066cc 100%);
+      background: linear-gradient(135deg, #007aff 0%, #0056b3 100%);
       border: none;
       color: #ffffff;
       cursor: pointer;
@@ -145,12 +145,12 @@
       gap: 6px;
       font-size: 13px;
       font-weight: 700;
-      box-shadow: 0 4px 14px rgba(10, 132, 255, 0.4);
+      box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
       transition: all 0.2s ease;
     }
     .header-action-btn:active {
       transform: scale(0.95);
-      box-shadow: 0 2px 8px rgba(10, 132, 255, 0.2);
+      box-shadow: 0 2px 6px rgba(0, 122, 255, 0.2);
     }
 
     /* NAVEGADOR DE SEMANA */
@@ -166,7 +166,7 @@
     }
 
     .nav-btn {
-      background: rgba(118, 118, 128, 0.16);
+      background: rgba(118, 118, 128, 0.12);
       border: none;
       color: var(--accent-blue);
       width: 34px;
@@ -180,7 +180,7 @@
     }
 
     .nav-btn:active {
-      background: rgba(10, 132, 255, 0.25);
+      background: rgba(0, 122, 255, 0.2);
     }
 
     .week-label {
@@ -292,8 +292,8 @@
     }
 
     .day-card.today {
-      border: 1.5px solid var(--accent-blue);
-      box-shadow: 0 4px 16px rgba(10, 132, 255, 0.2);
+      border: 2px solid var(--accent-blue);
+      box-shadow: 0 4px 16px rgba(0, 122, 255, 0.15);
     }
 
     .day-header {
@@ -352,7 +352,7 @@
     .day-budget-details {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      background: rgba(118, 118, 128, 0.12);
+      background: #f2f2f7;
       border-radius: 8px;
       padding: 8px 6px;
       font-size: 11px;
@@ -393,24 +393,27 @@
       align-items: center;
       justify-content: center;
       gap: 4px;
-      transition: opacity 0.15s ease;
-      height: 36px;
+      transition: all 0.15s ease;
+      height: 38px;
     }
 
     .btn:active {
-      opacity: 0.7;
+      transform: scale(0.97);
     }
 
     .btn-quick-170 {
       background: var(--accent-green-bg);
       color: var(--accent-green-text);
-      border: 0.5px solid rgba(48, 209, 88, 0.3);
+      border: 1px solid rgba(52, 199, 89, 0.4);
     }
 
-    .btn-custom-expense {
-      background: rgba(118, 118, 128, 0.18);
-      color: var(--accent-blue);
-      border: 0.5px solid rgba(10, 132, 255, 0.2);
+    /* BOTÓN "+ GASTO" DESTACADO Y LLAMATIVO EN CADA DÍA */
+    .btn-custom-expense-highlight {
+      background: linear-gradient(135deg, #007aff 0%, #0056b3 100%);
+      color: #ffffff;
+      border: none;
+      box-shadow: 0 3px 10px rgba(0, 122, 255, 0.3);
+      font-weight: 800;
     }
 
     /* HISTORIAL DE GASTOS DEL DIA */
@@ -428,7 +431,7 @@
       align-items: center;
       font-size: 13px;
       padding: 6px 4px;
-      border-bottom: 0.5px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
     }
     
     .expense-row:last-child {
@@ -450,13 +453,13 @@
     }
 
     .expense-cat-tag.comida {
-      background: rgba(10, 132, 255, 0.2);
-      color: #64d2ff;
+      background: #e5f1ff;
+      color: #0066cc;
     }
     
     .expense-cat-tag.general {
-      background: rgba(142, 142, 147, 0.25);
-      color: #d1d1d6;
+      background: #e5e5ea;
+      color: #555559;
     }
 
     .expense-concept {
@@ -489,10 +492,10 @@
       opacity: 0.4;
     }
 
-    /* CONTROLES SEGMENTADOS ESTILO iOS NATIVO */
+    /* CONTROLES SEGMENTADOS ESTILO iOS NATIVO MODO CLARO */
     .ios-segmented-control {
       display: flex;
-      background: rgba(118, 118, 128, 0.18);
+      background: #e5e5ea;
       border-radius: 8px;
       padding: 2px;
       border: none;
@@ -514,9 +517,9 @@
     }
 
     .segment-btn.active {
-      background: #636366; /* iOS Dark Selected Segment */
-      color: #ffffff;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      background: #ffffff;
+      color: #000000;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
     }
 
     /* HISTORIAL GLOBAL */
@@ -530,7 +533,7 @@
 
     .search-box {
       width: 100%;
-      background: rgba(118, 118, 128, 0.16);
+      background: #e5e5ea;
       border: none;
       border-radius: 10px;
       padding: 10px 14px;
@@ -553,7 +556,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 10px 4px;
-      border-bottom: 0.5px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
     }
 
     .global-history-item:last-child {
@@ -611,8 +614,8 @@
 
     .form-input {
       width: 100%;
-      background: rgba(118, 118, 128, 0.16);
-      border: 0.5px solid var(--card-border);
+      background: #f2f2f7;
+      border: 0.5px solid var(--border-color);
       border-radius: 10px;
       padding: 12px 14px;
       color: var(--text-primary);
@@ -622,7 +625,7 @@
 
     .form-input:focus {
       border-color: var(--accent-blue);
-      background: rgba(118, 118, 128, 0.22);
+      background: #ffffff;
     }
 
     .btn-primary {
@@ -641,7 +644,7 @@
       opacity: 0.7;
     }
 
-    /* BARRA DE NAVEGACIÓN INFERIOR NATIVA iOS (NÍTIDA, SIN DESENFOQUE NI SUBPÍXELES) */
+    /* BARRA DE NAVEGACIÓN INFERIOR MODO CLARO */
     .nav-bar {
       position: fixed;
       bottom: 0;
@@ -661,7 +664,7 @@
     .nav-tab {
       background: transparent;
       border: none;
-      color: #98989d;
+      color: #8e8e93;
       font-size: 11px;
       font-weight: 600;
       display: flex;
@@ -687,11 +690,11 @@
       fill: currentColor;
     }
 
-    /* HOJA FLOTANTE / MODAL DE REGISTRO iOS */
+    /* HOJA FLOTANTE / MODAL DE REGISTRO iOS MODO CLARO */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.4);
       display: none;
       justify-content: center;
       align-items: flex-end;
@@ -712,7 +715,7 @@
       border-top-right-radius: 16px;
       border-top: 0.5px solid var(--card-border);
       padding: 12px 20px calc(20px + env(safe-area-inset-bottom, 12px));
-      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.15);
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -746,23 +749,23 @@
       cursor: pointer;
     }
 
-    /* TOAST DE NOTIFICACIONES iOS NÍTIDO */
+    /* TOAST DE NOTIFICACIONES MODO CLARO */
     .toast {
       position: fixed;
       top: 20px;
       left: 0; right: 0;
       margin: 0 auto;
-      background: #2c2c2e;
-      color: #ffffff;
+      background: #ffffff;
+      color: #000000;
       padding: 12px 20px;
       border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
       z-index: 110;
       display: none;
       font-size: 13px;
       font-weight: 700;
       text-align: center;
-      border: 0.5px solid rgba(255, 255, 255, 0.15);
+      border: 0.5px solid rgba(0, 0, 0, 0.1);
       width: calc(100% - 32px);
       max-width: 380px;
     }
@@ -807,13 +810,6 @@
           <span id="syncDot" class="status-dot"></span>
           <span id="syncText">Sincronizar</span>
         </div>
-        <!-- Botón Agregar Gasto Destacado -->
-        <button class="header-action-btn" onclick="abrirModalGasto()" title="Registrar nuevo gasto">
-          <svg style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.8;" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-          </svg>
-          <span>Gasto</span>
-        </button>
       </div>
     </header>
 
@@ -851,14 +847,14 @@
       </div>
 
       <!-- Distribución Mensual Visual (KPI) -->
-      <div class="summary-card" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(99, 102, 241, 0.03)); border: 1px solid rgba(56, 189, 248, 0.15); display: flex; flex-direction: column; gap: 8px;">
+      <div class="summary-card" style="background: linear-gradient(135deg, rgba(0, 122, 255, 0.05), rgba(52, 199, 89, 0.05)); border: 1px solid rgba(0, 122, 255, 0.1); display: flex; flex-direction: column; gap: 8px;">
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <span style="font-size: 11px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Distribución Mensual (<span id="currentMonthName">Mes</span>)</span>
           <span id="monthlyTotalSpent" style="font-size: 14px; font-weight: 800; color: var(--text-primary);">$0.00</span>
         </div>
         
         <!-- Barra de progreso segmentada -->
-        <div style="width: 100%; height: 6px; background: rgba(255, 255, 255, 0.08); border-radius: 99px; overflow: hidden; display: flex; margin: 2px 0;">
+        <div style="width: 100%; height: 6px; background: #e5e5ea; border-radius: 99px; overflow: hidden; display: flex; margin: 2px 0;">
           <div id="monthlyComidaBar" style="width: 50%; height: 100%; background: var(--accent-blue); transition: width 0.3s ease;"></div>
           <div id="monthlyGeneralBar" style="width: 50%; height: 100%; background: var(--text-muted); transition: width 0.3s ease;"></div>
         </div>
@@ -992,7 +988,7 @@
     const CONFIG = {
       apiUrl: "https://script.google.com/macros/s/AKfycbxXkChXZT8zWpCAjCCUJkkqztQ2cNY493I1syHVnzsUhFZAaoxan6m7fsvjeJ5UoDY3/exec",
       token: "danielgastos2026",
-      fechaInicio: "2026-08-03",      // Fecha de inicio ajustada a hoy (3 de Agosto 2026)
+      fechaInicio: "2026-08-03",      // Fecha de inicio ajustada a hoy
       presupuestoDiario: 170,         // Presupuesto diario base en pesos
       saldoInicial: 0                 // Ahorro/Déficit inicial
     };
@@ -1102,7 +1098,6 @@
       return `${y}-${m}-${d}`;
     }
 
-    // Retorna la fecha lunes de la semana a la que pertenece la fecha dada
     function obtenerLunes(d) {
       const date = new Date(d);
       const day = date.getDay();
@@ -1123,7 +1118,6 @@
       });
     }
 
-    // RENDERIZADO Y CONTROL DE NAVEGACIÓN SEMANAL
     function cambiarSemana(direccion) {
       const d = new Date(state.semanaActiva);
       d.setDate(d.getDate() + (direccion * 7));
@@ -1133,7 +1127,6 @@
 
     // LÓGICA DE PRESUPUESTO ACUMULATIVO
     function calcularPresupuestoAcumulado(hastaFecha) {
-      // 1. Obtener la fecha de inicio
       let d = new Date(CONFIG.fechaInicio + "T00:00:00");
       if (isNaN(d.getTime())) {
         d = obtenerLunes(new Date());
@@ -1141,7 +1134,6 @@
       
       const limiteFecha = new Date(hastaFecha + "T00:00:00");
       
-      // Agrupar gastos por fecha (categoría "Comida" afecta presupuesto acumulativo)
       const gastosPorFecha = {};
       state.gastos.forEach(g => {
         if (g.categoria === "Comida") {
@@ -1152,7 +1144,6 @@
       const calculos = {};
       let rolloverBalance = CONFIG.saldoInicial;
 
-      // Bucle secuencial día por día
       while (d <= limiteFecha) {
         const dateStr = formatISO(d);
         
@@ -1169,10 +1160,7 @@
           restante: restante
         };
 
-        // El ahorro neto de hoy se convierte en el rollover del día siguiente
         rolloverBalance = restante;
-
-        // Avanzar 1 día
         d.setDate(d.getDate() + 1);
       }
 
@@ -1188,15 +1176,12 @@
       const lunesStr = formatISO(lunesSemana);
       const domingoStr = formatISO(domingoSemana);
 
-      // Formatear etiquetas de navegación
       const opciones = { day: 'numeric', month: 'short' };
       document.getElementById("weekTitle").textContent = "Semana del " + lunesSemana.getFullYear();
       document.getElementById("weekDates").textContent = `${lunesSemana.toLocaleDateString("es-MX", opciones)} - ${domingoSemana.toLocaleDateString("es-MX", opciones)}`;
 
-      // 1. Calcular todo el presupuesto acumulado hasta el domingo de la semana activa
       const calculosPresupuesto = calcularPresupuestoAcumulado(domingoStr);
 
-      // 2. Renderizar tarjetas de días de la semana activa
       const daysContainer = document.getElementById("daysList");
       daysContainer.innerHTML = "";
 
@@ -1222,7 +1207,6 @@
 
         totalDisponibleSemanal += diaCalc.base;
         
-        // Sumar todos los gastos de este día
         const gastosDia = state.gastos.filter(g => g.fecha === diaStr);
         const gastadoTotalDia = gastosDia.reduce((sum, g) => sum + parseFloat(g.monto), 0);
         totalGastadoSemanal += gastadoTotalDia;
@@ -1231,7 +1215,6 @@
           ultimoAhorroAcumulado = diaCalc.restante;
         }
 
-        // Crear la tarjeta de día
         const dayCard = document.createElement("div");
         dayCard.className = `day-card ${diaStr === hoyISOStr ? "today" : ""}`;
 
@@ -1300,7 +1283,7 @@
             <button class="btn btn-quick-170" onclick="registrarComidaRapida('${diaStr}')">
               ⚡ +$${obtenerPresupuestoDiario().toFixed(0)} Comida
             </button>
-            <button class="btn btn-custom-expense" onclick="abrirModalGasto('${diaStr}')">
+            <button class="btn btn-custom-expense-highlight" onclick="abrirModalGasto('${diaStr}')">
               ➕ Gasto
             </button>
           </div>
@@ -1311,7 +1294,6 @@
         daysContainer.appendChild(dayCard);
       }
 
-      // Actualizar resumen de la semana
       document.getElementById("weekBudgetTotal").textContent = formatearDinero(totalDisponibleSemanal);
       document.getElementById("weekSpentTotal").textContent = formatearDinero(totalGastadoSemanal);
       
@@ -1323,17 +1305,11 @@
         balanceEl.className = "text-red";
       }
 
-      // Renderizar el historial global y filtros
       renderHistorialGlobal();
-      
-      // Actualizar el KPI Mensual
       actualizarKpiMensual();
-
-      // Actualizar sugerencias de autocompletado
       actualizarSugerenciasConcepto();
     }
 
-    // SUGERENCIAS AUTOMÁTICAS
     function actualizarSugerenciasConcepto() {
       const datalist = document.getElementById("conceptosSugeridos");
       if (!datalist) return;
@@ -1357,7 +1333,6 @@
       });
     }
 
-    // KPI MENSUAL
     function actualizarKpiMensual() {
       const fechaBase = state.semanaActiva;
       const anio = fechaBase.getFullYear();
@@ -1402,7 +1377,6 @@
       document.getElementById("monthlyGeneralBar").style.width = `${pctGeneral}%`;
     }
 
-    // HISTORIAL COMPLETO
     function renderHistorialGlobal(filtro = "") {
       const container = document.getElementById("globalHistory");
       container.innerHTML = "";
@@ -1541,15 +1515,13 @@
       await guardarNuevoGastoEnBD(gasto);
     }
 
-    // GUARDAR GASTO EN LOCAL Y EXPORTAR AL SERVIDOR
     async function guardarNuevoGastoEnBD(gasto) {
-      // 1. Guardar local primero (Local-First)
+      // 1. Actualizar estado y pantalla primero
       state.gastos.push(gasto);
       guardarDatosLocales();
       actualizarTablero();
-      mostrarNotificacion("Gasto registrado localmente", "success");
 
-      // 2. Si hay API configurada y online, enviarlo al servidor
+      // 2. Comunicar con Google Sheets de forma limpia
       if (CONFIG.apiUrl && state.online) {
         try {
           actualizarSincronizacion(true);
@@ -1562,16 +1534,18 @@
           });
           
           if (response && response.ok) {
-            mostrarNotificacion("Sincronizado con Google Sheets", "success");
+            mostrarNotificacion("Gasto guardado en Google Sheets", "success");
           } else {
-            mostrarNotificacion("Guardado en local, falló sync en la nube.", "error");
+            mostrarNotificacion("Error al guardar en Google Sheets.", "error");
           }
         } catch (err) {
           console.error(err);
-          mostrarNotificacion("Guardado en local. Fallo de conexión.", "error");
+          mostrarNotificacion("Fallo de conexión con Google Sheets.", "error");
         } finally {
           actualizarSincronizacion(false);
         }
+      } else {
+        mostrarNotificacion("Gasto registrado localmente", "success");
       }
     }
 
@@ -1581,7 +1555,6 @@
       state.gastos = state.gastos.filter(g => g.id !== id);
       guardarDatosLocales();
       actualizarTablero();
-      mostrarNotificacion("Gasto eliminado localmente", "success");
 
       if (CONFIG.apiUrl && state.online) {
         try {
@@ -1592,10 +1565,12 @@
           }
         } catch (err) {
           console.error(err);
-          mostrarNotificacion("Eliminado localmente. No se pudo borrar en la nube.", "error");
+          mostrarNotificacion("No se pudo eliminar en Google Sheets.", "error");
         } finally {
           actualizarSincronizacion(false);
         }
+      } else {
+        mostrarNotificacion("Gasto eliminado localmente", "success");
       }
     }
 
@@ -1608,7 +1583,7 @@
       actualizarConexionBadge();
     }
 
-    // COMUNICACIÓN CON GOOGLE APPS SCRIPT
+    // PETICIÓN HTTP OPTIMIZADA SIN DENEGACIONES DE RED
     async function peticionApi(action, params = {}) {
       const url = CONFIG.apiUrl;
       const token = CONFIG.token;
@@ -1619,14 +1594,17 @@
         ...params
       });
 
-      const response = await fetch(`${url}?${queryParams.toString()}`);
+      const response = await fetch(`${url}?${queryParams.toString()}`, {
+        method: "GET",
+        mode: "cors"
+      });
+
       if (!response.ok) {
         throw new Error("Error de red");
       }
       return await response.json();
     }
 
-    // SINCRONIZACIÓN COMPLETA AUTOMÁTICA AL ABRIR Y AL HACER CLIC
     async function sincronizarDatos() {
       if (!CONFIG.apiUrl) {
         mostrarNotificacion("API de Apps Script no configurada en el código.", "error");
@@ -1646,9 +1624,14 @@
         if (response && response.ok) {
           state.gastos = response.data.gastos || [];
           
-          // Sincronizar fechaInicio remota si existe
-          if (response.data.config && response.data.config.fechaInicio) {
-            CONFIG.fechaInicio = response.data.config.fechaInicio;
+          // Respetar la fecha de inicio del usuario sin sobrescribirla remotamente
+          if (response.data.config) {
+            if (response.data.config.saldoInicial !== undefined) {
+              CONFIG.saldoInicial = parseFloat(response.data.config.saldoInicial) || 0;
+            }
+            if (response.data.config.presupuestoDiario) {
+              CONFIG.presupuestoDiario = parseFloat(response.data.config.presupuestoDiario) || 170;
+            }
           }
 
           guardarDatosLocales();
@@ -1665,7 +1648,6 @@
       }
     }
 
-    // NOTIFICACIONES TOAST
     function mostrarNotificacion(mensaje, tipo = "") {
       const toast = document.getElementById("toast");
       toast.textContent = mensaje;
